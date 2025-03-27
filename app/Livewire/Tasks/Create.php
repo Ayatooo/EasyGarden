@@ -11,17 +11,19 @@ use Livewire\Component;
 
 class Create extends Component
 {
-    public string $task_type;
-    public string $scheduled_at;
+    public ?string $task_type;
+    public ?string $scheduled_at;
     public string $status = 'A venir';
     public Collection $plants;
-    public int $plant_id;
+    public ?int $plant_id;
 
     public function mount(): void
     {
         $date = new DateTime();
         $this->scheduled_at = $date->format('Y-m-d');
         $this->plants = Plant::where('user_id', auth()->id())->get();
+        $this->task_type = null;
+        $this->plant_id = null;
     }
 
     /**
