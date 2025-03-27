@@ -11,6 +11,32 @@ class Plant extends Model
 {
     use HasFactory, SoftDeletes;
 
+    public const TYPE_OPTIONS = [
+        'Fleur',
+        'Plante verte',
+        'Cactus',
+        'Plante grasse',
+        'Arbre',
+        'Arbuste',
+        'Plante aquatique',
+    ];
+
+    public const SUN_EXPOSURE_OPTIONS = [
+        'Plein soleil',
+        'Mi-ombre',
+        'Ombre',
+    ];
+
+    public const SOIL_TYPE_OPTIONS = [
+        'Argileux',
+        'Sableux',
+        'Limoneux',
+        'Humifère',
+        'Calcaire',
+        'Tourbe',
+        'Autre',
+    ];
+
     protected $fillable = [
         'user_id',
         'name',
