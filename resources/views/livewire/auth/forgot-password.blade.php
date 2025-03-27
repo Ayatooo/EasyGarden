@@ -1,5 +1,5 @@
  <div class="flex flex-col gap-6">
-    <x-auth-header :title="__('Forgot password')" :description="__('Enter your email to receive a password reset link')" />
+    <x-auth-header :title="__('Mot de passe oublié')" :description="__('Entrez votre email pour recevoir un lien de réinitialisation.')" />
 
     <!-- Session Status -->
     <x-auth-session-status class="text-center" :status="session('status')" />
@@ -8,18 +8,18 @@
         <!-- Email Address -->
         <flux:input
             wire:model="email"
-            :label="__('Email Address')"
+            :label="__('Email')"
             type="email"
             required
             autofocus
             placeholder="email@example.com"
         />
 
-        <flux:button variant="primary" type="submit" class="w-full">{{ __('Email password reset link') }}</flux:button>
+        <flux:button variant="primary" type="submit" class="w-full">{{ __('Recevoir un lien') }}</flux:button>
     </form>
 
     <div class="space-x-1 text-center text-sm text-zinc-400">
-        {{ __('Or, return to') }}
-        <flux:link :href="route('login')" wire:navigate>{{ __('log in') }}</flux:link>
+        {{ __('Oups, je me souviens de mon mot de passe !') }}
+        <flux:link :href="route('login')" wire:navigate>{{ __('Se connecter') }}</flux:link>
     </div>
 </div>

@@ -1,16 +1,16 @@
 <div class="flex flex-col gap-6">
-    <x-auth-header :title="__('Log in to your account')" :description="__('Enter your email and password below to log in')" />
+    <x-auth-header :title="__('Se connecter à votre compte')" :description="__('Entrez vos informations de connexion pour accéder à votre compte.')"/>
 
     <!-- Session Status -->
-    <x-auth-session-status class="text-center" :status="session('status')" />
+    <x-auth-session-status class="text-center" :status="session('status')"/>
 
     <form wire:submit="login" class="flex flex-col gap-6">
         <!-- Email Address -->
         <flux:input
             wire:model="email"
-            :label="__('Email address')"
+            :label="__('Email')"
             type="email"
-            required
+            required="true"
             autofocus
             autocomplete="email"
             placeholder="email@example.com"
@@ -20,32 +20,32 @@
         <div class="relative">
             <flux:input
                 wire:model="password"
-                :label="__('Password')"
+                :label="__('Mot de passe')"
                 type="password"
-                required
+                required="true"
                 autocomplete="current-password"
-                :placeholder="__('Password')"
+                :placeholder="__('Mot de passe')"
             />
 
             @if (Route::has('password.request'))
                 <flux:link class="absolute right-0 top-0 text-sm" :href="route('password.request')" wire:navigate>
-                    {{ __('Forgot your password?') }}
+                    {{ __('Mot de passe oublié ?') }}
                 </flux:link>
             @endif
         </div>
 
         <!-- Remember Me -->
-        <flux:checkbox wire:model="remember" :label="__('Remember me')" />
+        <flux:checkbox wire:model="remember" :label="__('Se souvenir')"/>
 
         <div class="flex items-center justify-end">
-            <flux:button variant="primary" type="submit" class="w-full">{{ __('Log in') }}</flux:button>
+            <flux:button variant="primary" type="submit" class="w-full">{{ __('Connexion') }}</flux:button>
         </div>
     </form>
 
     @if (Route::has('register'))
         <div class="space-x-1 text-center text-sm text-zinc-600 dark:text-zinc-400">
-            {{ __('Don\'t have an account?') }}
-            <flux:link :href="route('register')" wire:navigate>{{ __('Sign up') }}</flux:link>
+            {{ __('Vous n\'avez pas de compte ?') }}
+            <flux:link :href="route('register')" wire:navigate>{{ __('S\'inscrire') }}</flux:link>
         </div>
     @endif
 </div>
