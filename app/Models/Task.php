@@ -11,6 +11,13 @@ class Task extends Model
 {
     use HasFactory, SoftDeletes;
 
+    public const TYPE_OPTIONS = [
+        'arrosage' => 'Arrosage',
+        'taille' => 'Taille',
+        'rempotage' => 'Rempotage',
+        'engrais' => 'Engrais',
+    ];
+
     protected $fillable = [
         'plant_id',
         'user_id',
@@ -32,7 +39,7 @@ class Task extends Model
     protected function casts(): array
     {
         return [
-            'schedulat_at' => 'timestamp',
+            'scheduled_at' => 'timestamp',
         ];
     }
 }

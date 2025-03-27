@@ -28,7 +28,7 @@ class UserSeeder extends Seeder
         ]);
 
         $plants->each(function ($plant) use ($louis) {
-            Task::factory(random_int(3, 6))->create([
+            Task::factory(random_int(0, 2))->create([
                 'plant_id' => $plant->id,
                 'user_id' => $louis->id
             ]);
@@ -46,7 +46,7 @@ class UserSeeder extends Seeder
         ]);
 
         $plants->each(function ($plant) use ($mattgones) {
-            Task::factory(random_int(3, 6))->create([
+            Task::factory(random_int(0, 2))->create([
                 'plant_id' => $plant->id,
                 'user_id' => $mattgones->id
             ]);
@@ -58,7 +58,7 @@ class UserSeeder extends Seeder
             ]);
 
             $plants->each(function ($plant) use ($user) {
-                Task::factory(random_int(3, 6))->create([
+                Task::factory(random_int(0, 2))->create([
                     'plant_id' => $plant->id,
                     'user_id' => $user->id
                 ]);
