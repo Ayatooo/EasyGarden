@@ -15,19 +15,16 @@
     <flux:separator variant="subtle" class="mb-5"/>
 
     <div x-data="{ activeTab: 'today' }">
+        <!-- Liste des onglets -->
         <div class="flex border-b">
-            <button
-                class="px-4 py-2 text-sm font-semibold focus:outline-none"
-                :class="activeTab === 'today' ? 'border-b-2 border-green-500 text-green-700' : 'text-gray-500'"
-                @click="activeTab = 'today'"
-            >
+            <button class="px-4 py-2 text-sm font-semibold focus:outline-none"
+                    :class="activeTab === 'today' ? 'border-b-2 border-green-500 text-green-700' : 'text-gray-500'"
+                    @click="activeTab = 'today'">
                 📅 Tâches du jour
             </button>
-            <button
-                class="px-4 py-2 text-sm font-semibold focus:outline-none"
-                :class="activeTab === 'future' ? 'border-b-2 border-green-500 text-green-700' : 'text-gray-500'"
-                @click="activeTab = 'future'"
-            >
+            <button class="px-4 py-2 text-sm font-semibold focus:outline-none"
+                    :class="activeTab === 'future' ? 'border-b-2 border-green-500 text-green-700' : 'text-gray-500'"
+                    @click="activeTab = 'future'">
                 ⏳ Tâches futures
             </button>
         </div>
@@ -39,9 +36,8 @@
             </div>
 
             <!-- Onglet "Tâches futures" -->
-            <div x-show="activeTab === 'future'" class="hidden" x-cloak>
-                zqdzzdzdq
-{{--                @livewire('tasks.future-task')--}}
+            <div x-show="activeTab === 'future'" x-cloak>
+                @livewire('tasks.future-tasks')
             </div>
         </div>
     </div>

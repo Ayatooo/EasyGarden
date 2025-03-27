@@ -57,5 +57,14 @@ class Create extends Component
         self::modal('create-task')->close();
 
         $this->dispatch('loadTasks');
+        $this->dispatch('loadFutureTasks');
+
+        $date = new DateTime();
+        $this->scheduled_at = $date->format('Y-m-d');
+        $this->reset([
+            'plant_id',
+            'task_type',
+            'status',
+        ]);
     }
 }
