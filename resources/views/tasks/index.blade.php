@@ -10,5 +10,7 @@
             Tous les jours, des tâches d'arrosage sont générées automatiquement pour vos plantes.
             Vous n'avez plus qu'à les marquer comme terminées !</p>
     </div>
-    <flux:separator variant="subtle"/>
+    <flux:separator variant="subtle" class="mb-5"/>
+
+    @livewire('tasks.create')
 </x-layouts.app>
