@@ -16,7 +16,7 @@ class PlantFactory extends Factory
         return [
             'name' => $this->faker->name(),
             'image' => $this->faker->word(),
-            'type' => $this->faker->randomElement(['Fleur', 'Plante verte', 'Cactus', 'Plante grasse', 'Arbre', 'Arbuste', 'Plante aquatique', 'Plante grimpante', 'Plante d\'intérieur', 'Plante d\'extérieur', 'Autre']),
+            'type' => $this->faker->randomElement(['Fleur', 'Plante verte', 'Cactus', 'Plante grasse', 'Arbre', 'Arbuste', 'Plante aquatique', 'Plante grimpante', 'Autre']),
             'watering_frequency' => $this->faker->randomNumber(),
             'sun_exposure' => $this->faker->randomElement(['Plein soleil', 'Mi-ombre', 'Ombre']),
             'soil_type' => $this->faker->randomElement(['Argileux', 'Sableux', 'Limoneux', 'Humifère', 'Calcaire', 'Tourbe', 'Autre']),

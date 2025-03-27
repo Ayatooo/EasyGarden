@@ -13,7 +13,7 @@ return new class extends Migration {
             $table->foreignIdFor(User::class);
             $table->string('name');
             $table->string('image')->nullable();
-            $table->enum('type', ['Fleur', 'Plante verte', 'Cactus', 'Plante grasse', 'Arbre', 'Arbuste', 'Plante aquatique', 'Plante grimpante', 'Plante d\'intérieur', 'Plante d\'extérieur', 'Autre']);
+            $table->enum('type', ['Fleur', 'Plante verte', 'Cactus', 'Plante grasse', 'Arbre', 'Arbuste', 'Plante aquatique', 'Plante grimpante', 'Autre']);
             $table->integer('watering_frequency');
             $table->enum('sun_exposure', ['Plein soleil', 'Mi-ombre', 'Ombre']);
             $table->enum('soil_type', ['Argileux', 'Sableux', 'Limoneux', 'Humifère', 'Calcaire', 'Tourbe', 'Autre']);
