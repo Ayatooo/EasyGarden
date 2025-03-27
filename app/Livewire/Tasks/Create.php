@@ -55,5 +55,7 @@ class Create extends Component
         $task->save();
 
         self::modal('create-task')->close();
+
+        $this->dispatch('loadTasks');
     }
 }
