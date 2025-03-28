@@ -1,8 +1,6 @@
 <div>
     <flux:modal.trigger name="delete-plant-{{ $plant->id }}">
-        <flux:button  class="cursor-pointer" size="sm">
-            <flux:icon name="trash" class="text-red-600" />
-        </flux:button>
+        <flux:icon name="trash" class="cursor-pointer text-red-600"/>
     </flux:modal.trigger>
 
     <flux:modal name="delete-plant-{{ $plant->id }}" class="min-w-[22rem]">
@@ -17,13 +15,15 @@
             </div>
 
             <div class="flex gap-2">
-                <flux:spacer />
+                <flux:spacer/>
 
                 <flux:modal.close>
                     <flux:button variant="ghost">Annuler</flux:button>
                 </flux:modal.close>
 
-                <flux:button wire:click="deletePlant({{ $plant->id }})" variant="danger" class="cursor-pointer">Supprimer</flux:button>
+                <flux:button wire:click="deletePlant({{ $plant->id }})" variant="danger" class="cursor-pointer">
+                    Supprimer
+                </flux:button>
             </div>
         </div>
     </flux:modal>

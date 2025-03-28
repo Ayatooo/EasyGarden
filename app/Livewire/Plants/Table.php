@@ -3,6 +3,9 @@
 namespace App\Livewire\Plants;
 
 use App\Models\Plant;
+use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\View\View;
 use Livewire\Component;
 use Livewire\WithPagination;
 use Livewire\Attributes\On;
@@ -12,26 +15,28 @@ class Table extends Component
 {
     use WithPagination;
 
-    public function render()
+    public function render(): View
     {
         return view('livewire.plants.table', [
-            'plants' => Plant::where('user_id', Auth::id())
-                ->orderBy('created_at', 'desc')
-                ->paginate(10)
+            'plants' => $this->loadPlants(),
         ]);
     }
 
     #[On('plant-updated')]
     #[On('plant-deleted')]
     #[On('plant-created')]
-    public function refreshPlants()
+    public function refreshPlants(): void
     {
         $this->resetPage();
     }
 
-    public function AllPlants()
+    /**
+     * @return LengthAwarePaginator
+     */
+    public function loadPlants(): LengthAwarePaginator
     {
-        $plants = Plant::all();
-        return $plants;
+        return Plant::where('user_id', Auth::id())
+            ->orderBy('created_at', 'desc')
+            ->paginate(10);
     }
 }

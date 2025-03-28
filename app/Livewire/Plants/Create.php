@@ -2,6 +2,8 @@
 namespace App\Livewire\Plants;
 use DateTime;
 use App\Models\Plant;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\View\View;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 
@@ -14,7 +16,7 @@ class Create extends Component
     public string $submitText = '';
     public string $action = '';
     public string $name = '';
-    public string $image = '';
+    public $image;
     public string $type = '';
     public int $watering_frequency = 0;
     public string $sun_exposure = '';
@@ -32,12 +34,18 @@ class Create extends Component
         $this->action = "createPlant";
     }
 
-    public function render()
+    /**
+     * @return View
+     */
+    public function render(): View
     {
         return view('livewire.plants.create');
     }
 
-    public function createPlant()
+    /**
+     * @return void
+     */
+    public function createPlant(): void
     {
         $plant = new Plant();
         $this->validate([
@@ -51,7 +59,8 @@ class Create extends Component
 
         $plant->user_id = auth()->user()->id;
         $plant->name = $this->name;
-        $plant->image = $this->image;
+        $image = Storage::disk('s3')->put('plants', $this->image);
+        $plant->image = $image;
         $plant->type = $this->type;
         $plant->watering_frequency = $this->watering_frequency;
         $plant->sun_exposure = $this->sun_exposure;
@@ -59,6 +68,17 @@ class Create extends Component
         $plant->notes = $this->notes;
         $plant->save();
 
+        $this->reset([
+            'name',
+            'image',
+            'type',
+            'watering_frequency',
+            'sun_exposure',
+            'soil_type',
+            'notes',
+        ]);
+
+        self::modal('create-plant')->close();
         $this->dispatch('plant-created');
     }
 }

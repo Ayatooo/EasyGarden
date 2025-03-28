@@ -2,11 +2,16 @@
 
 namespace App\Livewire\Plants;
 
+use Illuminate\Support\Facades\Storage;
+use Illuminate\View\View;
 use Livewire\Component;
 use App\Models\Plant;
+use Livewire\WithFileUploads;
 
 class Update extends Component
 {
+    use WithFileUploads;
+
     public Plant $plant;
     public $name = '';
     public $type = '';
@@ -20,7 +25,7 @@ class Update extends Component
     public string $submitText = '';
     public string $action = '';
 
-    public function mount(Plant $plant)
+    public function mount(Plant $plant): void
     {
 
         $this->plant = $plant;
@@ -38,12 +43,18 @@ class Update extends Component
         $this->action = "updatePlant({$plant->id})";
     }
 
-    public function render()
+    /**
+     * @return View
+     */
+    public function render(): View
     {
         return view('livewire.plants.update');
     }
 
-    public function updatePlant()
+    /**
+     * @return void
+     */
+    public function updatePlant(): void
     {
         $this->validate([
             'name' => 'required|string|max:255',
@@ -54,6 +65,7 @@ class Update extends Component
             'notes' => 'nullable|string|max:255',
         ]);
 
+        $image = Storage::disk('s3')->put('plants', $this->image);
         $this->plant->update([
             'name' => $this->name,
             'type' => $this->type,
@@ -61,7 +73,7 @@ class Update extends Component
             'sun_exposure' => $this->sun_exposure,
             'soil_type' => $this->soil_type,
             'notes' => $this->notes,
-            'image' => $this->image,
+            'image' => $image,
         ]);
 
         self::modal('update-plant-' . $this->plant->id)->close();
