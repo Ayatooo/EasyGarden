@@ -12,7 +12,7 @@ return new class extends Migration {
             $table->id();
             $table->string('chatgpt_id');
             $table->foreignIdFor(User::class)->constrained()->cascadeOnDelete();
-            $table->string('run_id');
+            $table->string('run_id')->nullable();
             $table->string('role');
             $table->text('content');
             $table->string('type');
