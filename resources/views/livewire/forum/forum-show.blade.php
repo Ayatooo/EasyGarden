@@ -10,8 +10,10 @@
     <div class="mt-6">
         <h3 class="text-lg font-bold mb-2">Réponses</h3>
 
+        @livewire('forum.create-reply', ['forumPostId' => $post->id])
+
         @foreach($replies as $reply)
-            <div class="bg-gray-100 rounded-lg p-3 mb-2">
+            <div class="bg-gray-100 rounded-lg p-3 mt-2">
                 <p class="text-sm text-gray-600">{{ $reply->user->name }} - {{ $reply->created_at->diffForHumans() }}</p>
                 <p class="text-gray-700">{{ $reply->content }}</p>
             </div>

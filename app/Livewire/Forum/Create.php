@@ -45,8 +45,6 @@ class Create extends Component
             'content' => $this->content,
         ]);
 
-        session()->flash('success', 'Votre post a été créé avec succès !');
-
         self::modal('create-forum-post')->close();
 
         $this->dispatch('loadForumPosts');

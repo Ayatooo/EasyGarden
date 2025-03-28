@@ -23,8 +23,12 @@
             <flux:navlist.item icon="calendar" :href="route('tasks.index')" :current="request()->routeIs('tasks.index')"
                                wire:navigate>{{ __('Tâches') }}</flux:navlist.item>
 
-            <flux:navlist.item icon="users" :href="route('forum.index')" :current="request()->routeIs('forum.index')"
-                               wire:navigate>{{ __('Forum') }}</flux:navlist.item>
+            <flux:navlist.item icon="users" :href="route('forum.index')"
+                               :current="str_starts_with(request()->path(), 'forum')"
+                               wire:navigate>
+                {{ __('Forum') }}
+            </flux:navlist.item>
+
         </flux:navlist.group>
     </flux:navlist>
 
