@@ -1,6 +1,6 @@
 <div>
     <flux:modal.trigger name="create-forum-reply">
-        <flux:button>Ajouter une réponse</flux:button>
+        <flux:button class="mb-2">Ajouter une réponse</flux:button>
     </flux:modal.trigger>
 
     <flux:modal name="create-forum-reply" class="md:w-96">
