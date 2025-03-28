@@ -16,12 +16,15 @@
             <flux:navlist.item icon="home" :href="route('dashboard')" :current="request()->routeIs('dashboard')"
                                wire:navigate>{{ __('Dashboard') }}</flux:navlist.item>
 
-            <flux:navlist.item icon="calendar" :href="route('tasks.index')" :current="request()->routeIs('tasks.index')"
-                               wire:navigate>{{ __('Tâches') }}</flux:navlist.item>
-                               
-           <flux:navlist.item icon="globe-asia-australia" :href="route('plants')" :current="request()->routeIs('plants')" 
+            <flux:navlist.item icon="globe-asia-australia" :href="route('plants')"
+                               :current="request()->routeIs('plants')"
                                wire:navigate>{{ __('Mes plantes') }}</flux:navlist.item>
 
+            <flux:navlist.item icon="calendar" :href="route('tasks.index')" :current="request()->routeIs('tasks.index')"
+                               wire:navigate>{{ __('Tâches') }}</flux:navlist.item>
+
+            <flux:navlist.item icon="users" :href="route('forum.index')" :current="request()->routeIs('forum.index')"
+                               wire:navigate>{{ __('Forum') }}</flux:navlist.item>
         </flux:navlist.group>
     </flux:navlist>
 

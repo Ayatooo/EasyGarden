@@ -5,11 +5,10 @@
             <flux:breadcrumbs.item href="#">Mon Jardin</flux:breadcrumbs.item>
         </flux:breadcrumbs>
 
-        <div class="bg-green-50 border-t border-b border-green-300 text-green-600 px-4 py-3 mt-5" role="alert">
+        <div class="bg-green-50 border-t border-b border-green-300 text-green-600 px-4 py-3" role="alert">
             <p class="font-bold">Mes plantes 🪴</p>
             <p class="text-sm">
-                Vous pouvez ajouter, modifier ou supprimer vos plantes ici. <br>
-                N'oubliez pas de les arroser régulièrement !
+                Vous pouvez ajouter, modifier ou supprimer vos plantes ici. N'oubliez pas de les arroser régulièrement !
             </p>
         </div>
     @livewire('plants.create')

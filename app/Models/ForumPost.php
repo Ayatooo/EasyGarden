@@ -11,6 +11,17 @@ class ForumPost extends Model
 {
     use HasFactory, SoftDeletes;
 
+    public const CATEGORIES = [
+        'Général',
+        'Maladies',
+        'Arrosage',
+        'Engrais',
+        'Exposition',
+        'Plantation',
+        'Taille',
+        'Autre',
+    ];
+
     protected $fillable = [
         'user_id',
         'category',
