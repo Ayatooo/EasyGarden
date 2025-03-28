@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\Storage;
 
 class Plant extends Model
 {
@@ -47,6 +48,17 @@ class Plant extends Model
         'soil_type',
         'notes',
     ];
+
+    protected $appends = [
+        'image_url',
+    ];
+
+    public function getImageUrlAttribute(): string
+    {
+        return $this->image
+            ? Storage::disk('s3')->temporaryUrl($this->image, now()->addMinutes(5))
+            : '';
+    }
 
     public function user(): BelongsTo
     {
