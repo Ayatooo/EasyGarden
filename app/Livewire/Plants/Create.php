@@ -4,12 +4,15 @@ use DateTime;
 use App\Models\Plant;
 use Livewire\Component;
 use Livewire\WithFileUploads;
-use Illuminate\Support\Facades\Auth;
 
 class Create extends Component
 {
     use WithFileUploads;
 
+    public string $title = '';
+    public string $description = '';
+    public string $submitText = '';
+    public string $action = '';
     public string $name = '';
     public string $image = '';
     public string $type = '';
@@ -23,6 +26,10 @@ class Create extends Component
     {
         $date = new DateTime();
         $this->scheduled_at = $date->format('Y-m-d');
+        $this->title = "Nouvelle plante";
+        $this->description = "Ajoutez une nouvelle plante à votre jardin.";
+        $this->submitText = "Ajouter";
+        $this->action = "createPlant";
     }
 
     public function render()
@@ -52,7 +59,7 @@ class Create extends Component
         $plant->notes = $this->notes;
         $plant->save();
 
-        self::modal('create-plant')->close();
+        $this->dispatch('plant-created');
     }
 }
 
