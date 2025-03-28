@@ -11,12 +11,19 @@
         <x-app-logo/>
     </a>
 
-            <flux:navlist variant="outline">
-                <flux:navlist.group :heading="__('Menu')" class="grid">
-                    <flux:navlist.item icon="home" :href="route('dashboard')" :current="request()->routeIs('dashboard')" wire:navigate>{{ __('Dashboard') }}</flux:navlist.item>
-                    <flux:navlist.item icon="globe-asia-australia" :href="route('plants')" :current="request()->routeIs('plants')" wire:navigate>{{ __('Mes plantes') }}</flux:navlist.item>
-                </flux:navlist.group>
-            </flux:navlist>
+    <flux:navlist variant="outline">
+        <flux:navlist.group :heading="__('Menu')" class="grid">
+            <flux:navlist.item icon="home" :href="route('dashboard')" :current="request()->routeIs('dashboard')"
+                               wire:navigate>{{ __('Dashboard') }}</flux:navlist.item>
+
+            <flux:navlist.item icon="calendar" :href="route('tasks.index')" :current="request()->routeIs('tasks.index')"
+                               wire:navigate>{{ __('Tâches') }}</flux:navlist.item>
+                               
+           <flux:navlist.item icon="globe-asia-australia" :href="route('plants')" :current="request()->routeIs('plants')" 
+                               wire:navigate>{{ __('Mes plantes') }}</flux:navlist.item>
+
+        </flux:navlist.group>
+    </flux:navlist>
 
     <flux:spacer/>
 
