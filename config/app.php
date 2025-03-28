@@ -123,4 +123,6 @@ return [
         'store' => env('APP_MAINTENANCE_STORE', 'database'),
     ],
 
+    'assistant_id' => env('ASSISTANT_ID', 'assistant-1'),
+
 ];
