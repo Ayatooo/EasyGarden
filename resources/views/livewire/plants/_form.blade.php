@@ -10,9 +10,6 @@
     <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
 
         <div class="space-y-6">
-            @if($image)
-                <img src="{{ Storage::disk('s3')->temporaryUrl($image, now()->addMinutes(5)) }}" alt="{{ ucfirst($name[0]) }}" class="w-20 h-20 object-cover rounded-full">
-            @endif
             <flux:input type="file" wire:model="image" label="Image de la plante" class="text-sm"/>
             <flux:input wire:model="name" label="Nom de la plante" placeholder="Par exemple : Ficus elastica"
                         class="text-sm"/>
