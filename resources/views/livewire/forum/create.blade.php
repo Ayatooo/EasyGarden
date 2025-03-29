@@ -1,7 +1,7 @@
 @php use App\Models\ForumPost; @endphp
 <div>
     <flux:modal.trigger name="create-forum-post">
-        <flux:button>Ajouter un post</flux:button>
+        <flux:button class="cursor-pointer">Ajouter un post</flux:button>
     </flux:modal.trigger>
 
     <flux:modal name="create-forum-post" class="md:w-96">
