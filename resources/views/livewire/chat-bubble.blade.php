@@ -69,7 +69,7 @@
                         placeholder="Écrivez votre message ici...">
                     <button
                         wire:click.prevent="sendMessage"
-                        class="inline-flex items-center justify-center rounded-md text-sm font-medium text-white bg-green-600 hover:bg-green-700 disabled:pointer-events-none disabled:opacity-50 h-10 px-4 py-2"
+                        class="inline-flex items-center justify-center rounded-md text-sm font-medium text-white bg-green-600 hover:bg-green-700 disabled:pointer-events-none disabled:opacity-50 h-10 px-4 py-2 cursor-pointer"
                         {{ $waitingResponse ? 'disabled' : '' }}>
                         Envoyer
                     </button>
