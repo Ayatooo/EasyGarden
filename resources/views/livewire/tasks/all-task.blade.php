@@ -20,17 +20,21 @@
 
                 @if($task->status === 'A venir')
                     <div class="flex space-x-2">
-                        <flux:button size="xs" wire:click="markAsDone({{ $task->id }})">
+                        <flux:tooltip content="Marquer comme effectué">
+                            <flux:button size="xs" wire:click="markAsDone({{ $task->id }})" class="cursor-pointer">
                             <svg xmlns="http://www.w3.org/2000/svg" class="text-green-700 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
-                            </svg>
-                        </flux:button>
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                                </svg>
+                            </flux:button>
+                        </flux:tooltip>
 
-                        <flux:button size="xs" wire:click="markAsCanceled({{ $task->id }})">
+                        <flux:tooltip content="Marquer comme annulé">
+                        <flux:button size="xs" wire:click="markAsCanceled({{ $task->id }})" class="cursor-pointer">
                             <svg xmlns="http://www.w3.org/2000/svg" class="text-red-700 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
-                            </svg>
-                        </flux:button>
+                                </svg>
+                            </flux:button>
+                        </flux:tooltip>
                     </div>
                 @endif
             </div>
