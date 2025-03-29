@@ -1,7 +1,7 @@
 @php use App\Models\Task; @endphp
 <div>
     <flux:modal.trigger name="create-task">
-        <flux:button>Ajouter une tâche</flux:button>
+        <flux:button class="cursor-pointer">Ajouter une tâche</flux:button>
     </flux:modal.trigger>
 
     <flux:modal name="create-task" class="md:w-96">
