@@ -59,8 +59,10 @@ class Create extends Component
 
         $plant->user_id = auth()->user()->id;
         $plant->name = $this->name;
-        $image = Storage::disk('s3')->put('plants', $this->image);
-        $plant->image = $image;
+        if ($this->image) {
+            $image = Storage::disk('s3')->put('plants', $this->image);
+            $plant->image = $image;
+        }
         $plant->type = $this->type;
         $plant->watering_frequency = $this->watering_frequency;
         $plant->sun_exposure = $this->sun_exposure;

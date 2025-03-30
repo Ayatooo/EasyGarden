@@ -15,7 +15,7 @@
                             <div class="bg-white  dark:bg-zinc-700 shadow-sm rounded-lg p-4 flex flex-col space-y-3">
                                 <!-- Image et Nom de la Plante -->
                                 <div class="flex items-center space-x-4">
-                                    <img src="{{ $task['plant']['image'] ?? 'https://images.unsplash.com/photo-1480250555643-539ea5d6d746?q=80&w=1931&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGV8fDB8fHx8fA%3D%3D' }}"
+                                    <img src="{{ $task['plant']['image_url'] }}"
                                          alt="{{ $task['plant']['name'] }}"
                                          class="w-12 h-12 rounded-lg">
                                     <div>
