@@ -15,8 +15,8 @@
                             <div class="bg-white  dark:bg-zinc-700 shadow-sm rounded-lg p-4 flex flex-col space-y-3">
                                 <!-- Image et Nom de la Plante -->
                                 <div class="flex items-center space-x-4">
-                                    <img src="{{ $task['plant']['image_url'] }}"
-                                         alt="{{ $task['plant']['name'] }}"
+                                    <img src="{{ $task['plant']['image_url'] ?? null}}"
+                                         alt="{{ ucfirst($task['plant']['name'][0]) }}"
                                          class="w-12 h-12 rounded-lg">
                                     <div>
                                         <p class="font-bold">{{ $task['plant']['name'] }}</p>

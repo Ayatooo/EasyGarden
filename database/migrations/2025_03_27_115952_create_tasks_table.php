@@ -12,7 +12,7 @@ return new class extends Migration {
         Schema::create('tasks', static function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(Plant::class);
-            $table->foreignIdFor(User::class)->constrained()->cascadeOnDelete();
+            $table->foreignIdFor(User::class);
             $table->enum('task_type', ['Arrosage', 'Fertilisation', 'Nettoyage', 'Taille', 'Transplantation', 'Engrais', 'Autre']);
             $table->timestamp('scheduled_at');
             $table->enum('status', ['A venir', 'Effectué', 'Annulé']);
