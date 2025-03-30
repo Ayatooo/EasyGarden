@@ -35,7 +35,7 @@ class Update extends Component
         $this->sun_exposure = $plant->sun_exposure;
         $this->soil_type = $plant->soil_type;
         $this->notes = $plant->notes;
-        $this->image = $plant->image;
+        $this->image = null;
 
         $this->title = "Modifier la plante";
         $this->description = "Modifiez les informations de votre plante.";
@@ -65,7 +65,6 @@ class Update extends Component
             'notes' => 'nullable|string|max:255',
         ]);
 
-        $image = Storage::disk('s3')->put('plants', $this->image);
         $this->plant->update([
             'name' => $this->name,
             'type' => $this->type,
@@ -73,8 +72,12 @@ class Update extends Component
             'sun_exposure' => $this->sun_exposure,
             'soil_type' => $this->soil_type,
             'notes' => $this->notes,
-            'image' => $image,
         ]);
+
+        if ($this->image) {
+            $image = Storage::disk('s3')->put('plants', $this->image);
+            $this->plant->update(['image' => $image]);
+        }
 
         self::modal('update-plant-' . $this->plant->id)->close();
         $this->dispatch('plant-updated');

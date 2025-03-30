@@ -12,6 +12,9 @@ class TaskController extends Controller
      */
     public function index(): View
     {
-        return view('tasks.index');
+        $hasPlants = auth()->user()->plants()->exists();
+        return view('tasks.index', [
+            'hasPlants' => $hasPlants
+        ]);
     }
 }
