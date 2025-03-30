@@ -13,16 +13,16 @@
 
     <div class="space-y-4">
         @foreach($posts as $post)
-            <div class="bg-white shadow-sm rounded-lg p-4">
+            <div class="bg-white dark:bg-zinc-700 shadow-sm rounded-lg p-4">
                 <a href="{{ route('forum.show', $post->id) }}" class="block">
                     <h2 class="text-lg font-bold">
-                        <flux:badge color="emerald">
+                        <span class="bg-emerald-100 text-emerald-800 text-sm font-medium p-2 rounded dark:bg-emerald-900 dark:text-emerald-300 mr-2">
                             {{ $post->category }}
-                        </flux:badge>
+                        </span>
                         {{ $post->title }}
                     </h2>
-                    <p class="mt-2 text-gray-700">{{ Str::limit($post->content) }}</p>
-                    <p class="text-sm text-gray-500">Posté par {{ $post->user->name }}
+                    <p class="mt-2 text-gray-700 dark:text-white">{{ Str::limit($post->content) }}</p>
+                    <p class="text-sm text-gray-500 dark:text-white">Posté par {{ $post->user->name }}
                         - {{ $post->created_at->diffForHumans() }}</p>
                 </a>
             </div>

@@ -17,12 +17,12 @@
     <div x-data="{ activeTab: 'today' }">
         <!-- Liste des onglets -->
         <div class="flex border-b">
-            <button class="px-4 py-2 text-sm font-semibold focus:outline-none"
+            <button class="px-4 py-2 text-sm font-semibold focus:outline-none dark:text-white cursor-pointer"
                     :class="activeTab === 'today' ? 'border-b-2 border-green-500 text-green-700' : 'text-gray-500'"
                     @click="activeTab = 'today'">
                 📅 Tâches du jour
             </button>
-            <button class="px-4 py-2 text-sm font-semibold focus:outline-none"
+            <button class="px-4 py-2 text-sm font-semibold focus:outline-none dark:text-white cursor-pointer"
                     :class="activeTab === 'future' ? 'border-b-2 border-green-500 text-green-700' : 'text-gray-500'"
                     @click="activeTab = 'future'">
                 ⏳ Tâches futures

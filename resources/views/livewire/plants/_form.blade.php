@@ -4,13 +4,15 @@
 <form wire:submit="{{ $action }}" class="space-y-8">
     <div class="border-b pb-4">
         <flux:heading size="lg">{{ $title }}</flux:heading>
-        <flux:text class="mt-2 text-gray-600">{{ $description }}</flux:text>
+        <flux:text class="mt-2 text-gray-600 dark:text-white">{{ $description }}</flux:text>
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
 
+    <div>
+        <flux:input type="file" wire:model="image" label="Image de la plante" class="text-sm"/>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
         <div class="space-y-6">
-            <flux:input type="file" wire:model="image" label="Image de la plante" class="text-sm"/>
             <flux:input wire:model="name" label="Nom de la plante" placeholder="Par exemple : Ficus elastica"
                         class="text-sm"/>
             <flux:input wire:model="watering_frequency" type="number" label="Fréquence d'arrosage (jours)"
@@ -31,13 +33,13 @@
                 @endforeach
             </flux:select>
 
-            <flux:select wire:model="sun_exposure" label="Exposition au soleil"
-                         placeholder="Sélectionnez une exposition" class="text-sm">
-                @foreach (Plant::SUN_EXPOSURE_OPTIONS as $exposure)
-                    <flux:select.option value="{{ $exposure }}">{{ $exposure }}</flux:select.option>
-                @endforeach
-            </flux:select>
         </div>
+        <flux:select wire:model="sun_exposure" label="Exposition au soleil"
+                     placeholder="Sélectionnez une exposition" class="text-sm">
+            @foreach (Plant::SUN_EXPOSURE_OPTIONS as $exposure)
+                <flux:select.option value="{{ $exposure }}">{{ $exposure }}</flux:select.option>
+            @endforeach
+        </flux:select>
     </div>
 
     <div>

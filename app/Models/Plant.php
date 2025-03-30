@@ -53,11 +53,11 @@ class Plant extends Model
         'image_url',
     ];
 
-    public function getImageUrlAttribute(): string
+    public function getImageUrlAttribute(): ?string
     {
         return $this->image
             ? Storage::disk('s3')->temporaryUrl($this->image, now()->addMinutes(5))
-            : '';
+            : null;
     }
 
     public function user(): BelongsTo
