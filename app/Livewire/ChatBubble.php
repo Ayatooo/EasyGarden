@@ -19,6 +19,7 @@ class ChatBubble extends Component
     public bool $hasMessages;
     public string $prompt = '';
     public bool $waitingResponse = false;
+    public bool $dailyQuotaReached = false;
 
     /**
      * @return View
@@ -35,6 +36,13 @@ class ChatBubble extends Component
         if ($this->hasMessages) {
             $messages = $this->loadMessages();
             $messages = $messages->reverse();
+            $userMessagesCount = ChatgptMessage::where('user_id', auth()->user()->id)
+                ->where('role', 'user')
+                ->whereDate('created_at', now())
+                ->count();
+            if ($userMessagesCount > 10) {
+                $this->dailyQuotaReached = true;
+            }
         }
         return view('livewire.chat-bubble', [
             'messages' => $messages,
