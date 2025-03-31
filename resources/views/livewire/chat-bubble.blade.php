@@ -72,6 +72,7 @@
                         wire:model.live="prompt"
                         rows="1"
                         id="prompt-textarea"
+                        maxlength="350"
                         oninput="autoResize(this)"
                         class="flex w-full max-h-40 resize-none rounded-md border border-gray-300 dark:border-gray-600 px-3 py-2 text-sm placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-green-500 disabled:cursor-not-allowed disabled:opacity-50 dark:bg-zinc-800 dark:text-white overflow-y-auto"
                         placeholder="Écrivez votre message ici...">
