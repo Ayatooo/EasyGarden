@@ -20,7 +20,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        LogViewer::auth(static function () {
+        LogViewer::auth(function () {
             if (app()->environment('local')) {
                 return true;
             }
