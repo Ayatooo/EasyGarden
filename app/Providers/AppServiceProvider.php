@@ -24,13 +24,15 @@ class AppServiceProvider extends ServiceProvider
             if (app()->environment('local')) {
                 return true;
             }
-            if (auth()->check() && auth()->user()->email === 'louisreynard919@gmail.com'){
+            if (auth()->check() && auth()->user()->email === 'louisreynard919@gmail.com') {
                 return true;
             }
-            if (auth()->check() && auth()->user()->email === 'mattdinville@gmail.com'){
+
+            if (auth()->check() && auth()->user()->email === 'mattdinville@gmail.com') {
                 return true;
             }
-            abort(403, 'Vous n\'êtes pas autorisé à accéder à cette page');
+
+           return abort(403, 'Vous n\'êtes pas autorisé à accéder à cette page');
         });
     }
 }
