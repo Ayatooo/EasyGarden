@@ -3,7 +3,7 @@
     <div class="mb-4 flex items-center space-x-4">
         @livewire('forum.create')
 
-        <select wire:model.live="selectedCategory" class="border p-2 rounded">
+        <select wire:model.live="selectedCategory" class="border p-2 rounded dark:bg-zinc-800 dark:text-white text-gray-700 bg-white">
             <option value="">Toutes les catégories</option>
             @foreach(App\Models\ForumPost::CATEGORIES as $category)
                 <option value="{{ $category }}">{{ ucfirst($category) }}</option>

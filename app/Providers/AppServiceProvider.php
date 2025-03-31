@@ -20,5 +20,17 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        LogViewer::auth(function () {
+            if (app()->environment('local')) {
+                return true;
+            }
+            if (auth()->check() && auth()->user()->email === 'louisreynard919@gmail.com'){
+                return true;
+            }
+            if (auth()->check() && auth()->user()->email === 'mattdinville@gmail.com'){
+                return true;
+            }
+            abort(403, 'Vous n\'êtes pas autorisé à accéder à cette page');
+        });
     }
 }
