@@ -21,19 +21,16 @@ class ChatBubble extends Component
     public bool $waitingResponse = false;
 
     /**
-     * @return void
+     * @return View
      */
-    public function mount(): void
+    public function render(): View
     {
         $this->hasMessages = auth()
             ->user()
             ->messages
             ->where('role', 'user')
             ->isNotEmpty();
-    }
 
-    public function render(): View
-    {
         $messages = new Collection();
         if ($this->hasMessages) {
             $messages = $this->loadMessages();
@@ -65,6 +62,9 @@ class ChatBubble extends Component
             ->get();
     }
 
+    /**
+     * @return void
+     */
     public function sendMessage(): void
     {
         if ($this->prompt === '') {
