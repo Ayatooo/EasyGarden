@@ -26,13 +26,11 @@ class AppServiceProvider extends ServiceProvider
             }
             if (auth()->check() && auth()->user()->email === 'louisreynard919@gmail.com') {
                 return true;
-            }
-
-            if (auth()->check() && auth()->user()->email === 'mattdinville@gmail.com') {
+            } else if (auth()->check() && auth()->user()->email === 'mattdinville@gmail.com') {
                 return true;
+            } else {
+                return false;
             }
-
-           return abort(403, 'Vous n\'êtes pas autorisé à accéder à cette page');
         });
     }
 }
