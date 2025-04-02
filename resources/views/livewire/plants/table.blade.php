@@ -88,7 +88,9 @@
         </tbody>
     </table>
 
-    <div class="mt-4">
-        {{ $plants->links() }}
-    </div>
+    @if($plants->hasPages())
+        <div class="p-4">
+            {{ $plants->links() }}
+        </div>
+    @endif
 </div>
