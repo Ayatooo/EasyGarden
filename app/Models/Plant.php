@@ -56,6 +56,7 @@ class Plant extends Model
         'sun_exposure',
         'soil_type',
         'notes',
+        'location',
     ];
 
     protected $appends = [

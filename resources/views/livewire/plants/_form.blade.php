@@ -1,12 +1,9 @@
-
 @php use App\Models\Plant; @endphp
-
 <form wire:submit="{{ $action }}" class="space-y-8">
     <div class="border-b pb-4">
         <flux:heading size="lg">{{ $title }}</flux:heading>
         <flux:text class="mt-2 text-gray-600 dark:text-white">{{ $description }}</flux:text>
     </div>
-
 
     <div>
         <flux:input type="file" wire:model="image" label="Image de la plante" class="text-sm"/>
@@ -26,7 +23,7 @@
                 @endforeach
             </flux:select>
 
-            <flux:select wire:model="soil_type" label="Type de sol" placeholder="Sélectionnez un type de sol"
+            <flux:select wire:model="soil_type" label="Type de sol" placeholder="Sélectionnez un type"
                          class="text-sm">
                 @foreach (Plant::SOIL_TYPE_OPTIONS as $type)
                     <flux:select.option value="{{ $type }}">{{ $type }}</flux:select.option>
@@ -34,12 +31,19 @@
             </flux:select>
 
         </div>
-        <flux:select wire:model="sun_exposure" label="Exposition au soleil"
-                     placeholder="Sélectionnez une exposition" class="text-sm">
-            @foreach (Plant::SUN_EXPOSURE_OPTIONS as $exposure)
-                <flux:select.option value="{{ $exposure }}">{{ $exposure }}</flux:select.option>
-            @endforeach
-        </flux:select>
+    </div>
+
+    <flux:select wire:model="sun_exposure" label="Exposition au soleil"
+                 placeholder="Sélectionnez une exposition" class="text-sm">
+        @foreach (Plant::SUN_EXPOSURE_OPTIONS as $exposure)
+            <flux:select.option value="{{ $exposure }}">{{ $exposure }}</flux:select.option>
+        @endforeach
+    </flux:select>
+
+    <div>
+        <flux:input wire:model="location" label="Emplacement"
+                    placeholder="Par exemple : Au fond à droite (Nord-Est) près du mur"
+                    class="text-sm"/>
     </div>
 
     <div>

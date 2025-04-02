@@ -20,6 +20,7 @@ class PlantFactory extends Factory
             'watering_frequency' => $this->faker->randomNumber(),
             'sun_exposure' => $this->faker->randomElement(['Plein soleil', 'Mi-ombre', 'Ombre']),
             'soil_type' => $this->faker->randomElement(['Argileux', 'Sableux', 'Limoneux', 'Humifère', 'Calcaire', 'Tourbe', 'Autre']),
+            'location' => $this->faker->randomElement(['Intérieur', 'Extérieur']),
             'notes' => $this->faker->word(),
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
