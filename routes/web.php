@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ForumController;
 use App\Http\Controllers\TaskController;
+use App\Http\Controllers\CheckoutController;
 use App\Livewire\Settings\Appearance;
 use App\Livewire\Settings\Password;
 use App\Livewire\Settings\Profile;
@@ -55,5 +56,17 @@ Route::middleware(['auth'])->group(function () {
     Route::get('tasks', [TaskController::class, 'index'])->name('tasks.index');
     Route::get('forum', [ForumController::class, 'index'])->name('forum.index');
     Route::get('forum/{postId}', [ForumController::class, 'show'])->name('forum.show');
+
+    Route::get('checkout/{plan?}', CheckoutController::class)->name('checkout');
+    Route::get('checkout/success', [CheckoutController::class, 'success'])->name('checkout.success');
+    Route::get('checkout/cancel', [CheckoutController::class, 'cancel'])->name('checkout.cancel');
+
+
 });
+
+Route::post(
+    'stripe/webhook',
+    \Laravel\Cashier\Http\Controllers\WebhookController::class
+)->name('cashier.webhook');
+
 require __DIR__.'/auth.php';
