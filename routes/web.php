@@ -27,7 +27,7 @@ Route::view('dashboard', 'dashboard')
 Route::get('/impersonate/{id}', static function ($id) {
     $user = User::findOrFail($id);
 
-    abort_unless(auth()->user()->canImpersonate(), 403);
+    abort_unless(auth()->user()->isAdmin(), 403);
 
     auth()->user()->impersonate($user);
 

@@ -17,14 +17,13 @@ class User extends Authenticatable
     /** @use HasFactory<\Database\Factories\UserFactory> */
     use HasFactory, Notifiable, Impersonate;
 
-    public function canImpersonate(): bool
+    public function isAdmin(): bool
     {
         return in_array($this->email, [
             'louisreynard919@gmail.com',
             'matdinville@gmail.com',
         ]);
     }
-
 
     /**
      * The attributes that are mass assignable.
