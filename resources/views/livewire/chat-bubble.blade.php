@@ -22,7 +22,7 @@
                 @if(!$hasMessages)
                     <div class="flex items-start space-x-2 text-sm">
                         <div class="rounded-full bg-gray-100 border p-1">
-                            <img src="{{ asset('img/logo.png') }}" alt="Assistant" class="w-6 h-6 rounded-full">
+                            <img src="{{ basset('img/logo.png') }}" alt="Assistant" class="w-6 h-6 rounded-full">
                         </div>
                         <div
                             class="bg-gray-200 dark:bg-gray-600 text-gray-800 dark:text-white rounded-lg p-2 max-w-[80%]">
@@ -44,9 +44,11 @@
                             <!-- Message Assistant -->
                             <div class="flex items-start space-x-3 text-sm">
                                 <div class="rounded-full border p-1 w-10 h-10 flex items-center justify-center">
-                                    <img src="{{ asset('img/logo.png') }}" alt="Assistant" class="w-8 h-8 rounded-full object-cover">
+                                    <img src="{{ basset('img/logo.png') }}" alt="Assistant"
+                                         class="w-8 h-8 rounded-full object-cover">
                                 </div>
-                                <div class="bg-gray-200 dark:bg-zinc-600 text-gray-800 dark:text-white rounded-lg p-2 max-w-[80%]">
+                                <div
+                                    class="bg-gray-200 dark:bg-zinc-600 text-gray-800 dark:text-white rounded-lg p-2 max-w-[80%]">
                                     <p class="font-bold">N-AIn de Jardin</p>
                                     <p>{!! $message->answer !!}</p>
                                 </div>
@@ -63,25 +65,43 @@
             @endif
 
             <!-- Input box -->
-            <div class="flex items-center pt-2 border-t border-gray-300 dark:border-gray-600">
-                <form class="flex items-center justify-center w-full space-x-2">
+            @if(!$dailyQuotaReached)
+                <div class="flex items-center pt-2 border-t border-gray-300 dark:border-gray-600">
+                    <form class="flex items-center justify-center w-full space-x-2">
                     <textarea
                         wire:model.live="prompt"
                         rows="1"
                         id="prompt-textarea"
+                        maxlength="350"
                         oninput="autoResize(this)"
                         class="flex w-full max-h-40 resize-none rounded-md border border-gray-300 dark:border-gray-600 px-3 py-2 text-sm placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-green-500 disabled:cursor-not-allowed disabled:opacity-50 dark:bg-zinc-800 dark:text-white overflow-y-auto"
                         placeholder="Écrivez votre message ici...">
                     </textarea>
 
-                    <button
-                        wire:click.prevent="sendMessage"
-                        class="inline-flex items-center justify-center rounded-md text-sm font-medium text-white bg-green-600 hover:bg-green-700 disabled:pointer-events-none disabled:opacity-50 h-10 px-4 py-2 cursor-pointer"
-                        {{ $waitingResponse ? 'disabled' : '' }}>
-                        Envoyer
-                    </button>
-                </form>
-            </div>
+                        <button
+                            wire:click.prevent="sendMessage"
+                            class="inline-flex items-center justify-center rounded-md text-sm font-medium text-white bg-green-600 hover:bg-green-700 disabled:pointer-events-none disabled:opacity-50 h-10 px-4 py-2 cursor-pointer"
+                            {{ $waitingResponse ? 'disabled' : '' }}>
+                            Envoyer
+                        </button>
+                    </form>
+                </div>
+            @else
+                <div
+                    class="mt-4 mx-2 text-sm rounded-lg bg-red-100 border border-red-300 text-red-800 dark:bg-red-900 dark:border-red-700 dark:text-red-100 p-3 flex items-center gap-2">
+                    <svg class="w-5 h-5 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"
+                         xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                              d="M13 16h-1v-4h-1m1-4h.01M21 12A9 9 0 1 1 3 12a9 9 0 0 1 18 0Z"/>
+                    </svg>
+                    <span>
+                        <p>Vous avez atteint votre quota de messages pour aujourd’hui 🌿</p>
+                        <p>
+                            Revenez demain pour continuer la discussion avec votre assistant jardinier !
+                        </p>
+                    </span>
+                </div>
+            @endif
         </div>
     @endif
 </div>

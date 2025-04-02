@@ -11,7 +11,7 @@
 
             <!-- Placeholder pour future statistique -->
             <div class="relative aspect-video overflow-hidden rounded-xl border border-neutral-200 dark:border-neutral-700 flex items-center justify-center">
-                <img src="{{ asset('img/flower.jpg') }}" alt="Growth Analytics" />
+                <img src="{{ basset('img/flower.jpg') }}" alt="Growth Analytics" />
             </div>
         </div>
 

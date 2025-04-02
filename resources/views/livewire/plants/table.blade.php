@@ -1,7 +1,7 @@
-<div class="overflow-x-auto"
+<div class="relative overflow-x-auto rounded-xl border border-neutral-200 dark:border-neutral-700"
      wire:listener="refreshPlantsTable">
-    <table class="min-w-full divide-y divide-gray-200">
-        <thead class="bg-gray-50 dark:bg-zinc-800 ">
+    <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+        <thead class="text-xs uppercase bg-gray-50 dark:bg-zinc-700 dark:text-gray-300">
         <tr>
             <th scope="col"
                 class="px-6 py-3 text-left text-xs font-medium dark:text-white text-gray-500 uppercase tracking-wider">
@@ -30,6 +30,10 @@
             <th scope="col"
                 class="px-6 py-3 text-left text-xs font-medium dark:text-white text-gray-500 uppercase tracking-wider">
                 Type de sol
+            </th>
+            <th scope="col"
+                class="px-6 py-3 text-left text-xs font-medium dark:text-white text-gray-500 uppercase tracking-wider">
+                Emplacement
             </th>
             <th scope="col"
                 class="px-6 py-3 text-left text-xs font-medium dark:text-white text-gray-500 uppercase tracking-wider">
@@ -65,6 +69,9 @@
                 </td>
                 <td class="px-6 py-4 whitespace-nowrap text-sm dark:text-white text-gray-900">
                     {{ $plant->soil_type }}
+                </td>
+                <td class="px-6 py-4 text-sm dark:text-white text-gray-900">
+                    {{ Str::limit($plant->location, 50) }}
                 </td>
                 <td class="px-6 py-4 text-sm dark:text-white text-gray-900">
                     {{ Str::limit($plant->notes, 50) }}

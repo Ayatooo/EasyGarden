@@ -2,6 +2,7 @@
 namespace App\Livewire\Plants;
 use DateTime;
 use App\Models\Plant;
+use Illuminate\Http\File;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\View\View;
 use Livewire\Component;
@@ -16,11 +17,12 @@ class Create extends Component
     public string $submitText = '';
     public string $action = '';
     public string $name = '';
-    public $image;
+    public File $image;
     public string $type = '';
     public int $watering_frequency = 0;
     public string $sun_exposure = '';
     public string $soil_type = '';
+    public string $location = '';
     public string $notes = '';
     public string $scheduled_at;
 
@@ -54,6 +56,7 @@ class Create extends Component
             'watering_frequency' => 'required|numeric',
             'sun_exposure' => 'required|string|in:' . implode(',', Plant::SUN_EXPOSURE_OPTIONS),
             'soil_type' => 'required|string|in:' . implode(',', Plant::SOIL_TYPE_OPTIONS),
+            'location' => 'nullable|string|max:255',
             'notes' => 'nullable|string|max:255',
         ]);
 
@@ -77,6 +80,7 @@ class Create extends Component
             'watering_frequency',
             'sun_exposure',
             'soil_type',
+            'location',
             'notes',
         ]);
 

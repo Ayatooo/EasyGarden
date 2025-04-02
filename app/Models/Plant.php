@@ -22,13 +22,14 @@ class Plant extends Model
 
 
     public const TYPE_OPTIONS = [
-        'Fleur',
-        'Plante verte',
-        'Cactus',
-        'Plante grasse',
         'Arbre',
         'Arbuste',
+        'Autre',
+        'Cactus',
+        'Fleur',
         'Plante aquatique',
+        'Plante grasse',
+        'Plante verte',
     ];
 
     public const SUN_EXPOSURE_OPTIONS = [
@@ -56,6 +57,7 @@ class Plant extends Model
         'sun_exposure',
         'soil_type',
         'notes',
+        'location',
     ];
 
     protected $appends = [
@@ -66,7 +68,7 @@ class Plant extends Model
     {
         return $this->image
             ? Storage::disk('s3')->temporaryUrl($this->image, now()->addMinutes(5))
-            : null;
+            : basset('img/plants_type/' . $this->type . '.jpg');
     }
 
     public function user(): BelongsTo

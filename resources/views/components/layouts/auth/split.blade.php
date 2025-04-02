@@ -7,12 +7,12 @@
 <div class="relative grid h-dvh flex-col items-center justify-center px-8 sm:px-0 lg:max-w-none lg:grid-cols-2 lg:px-0">
     <div
         class="relative hidden h-full flex-col p-10 text-white lg:flex dark:border-r dark:border-neutral-800 bg-cover bg-center"
-        style="background-image: url('{{ asset('img/login-image.jpg') }}');">
+        style="background-image: url('{{ basset('img/login-image.jpg') }}');">
 
         <div class="absolute inset-0 bg-neutral-900/70"></div>
 
         <a href="{{ route('home') }}" class="relative z-20 flex items-center text-lg font-medium" wire:navigate>
-            <img src="{{ asset('img/logo.png') }}" alt="Logo" class="h-16 w-16">
+            <img src="{{ basset('img/logo.png') }}" alt="Logo" class="h-16 w-16">
             {{ config('app.name', 'Laravel') }}
         </a>
     </div>

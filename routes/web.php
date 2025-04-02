@@ -1,10 +1,12 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ForumController;
 use App\Http\Controllers\TaskController;
 use App\Livewire\Settings\Appearance;
 use App\Livewire\Settings\Password;
 use App\Livewire\Settings\Profile;
+use App\Models\User;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PlantController;
 
@@ -12,13 +14,33 @@ Route::get('/', static function () {
     return view('welcome');
 })->name('home');
 
+Route::get('/admin', [AdminController::class, 'index'])
+    ->middleware(['auth', 'verified'])
+    ->name('admin');
+
 Route::view('dashboard', 'dashboard')
     ->middleware(['auth', 'verified'])
     ->name('dashboard');
 
-Route::view('garden', 'garden')
-    ->middleware(['auth', 'verified'])
-    ->name('garden');
+
+/*** ROUTES ASSISTANCE ***/
+Route::get('/impersonate/{id}', static function ($id) {
+    $user = User::findOrFail($id);
+
+    abort_unless(auth()->user()->isAdmin(), 403);
+
+    auth()->user()->impersonate($user);
+
+    return redirect('/dashboard');
+})->middleware('auth')->name('impersonate');
+
+Route::get('/leave-impersonation', static function () {
+    auth()->user()->leaveImpersonation();
+
+    return redirect('/admin');
+})->middleware('auth')->name('impersonate.leave');
+/*** FIN DES ROUTES ASSISTANCE ***/
+
 
 Route::middleware(['auth'])->group(function () {
     Route::redirect('settings', 'settings/profile');

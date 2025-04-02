@@ -16,6 +16,7 @@ class PlantRequest extends FormRequest
             'watering_frequency' => ['required'],
             'sun_exposure' => ['required'],
             'soil_type' => ['required'],
+            'location' => ['nullable'],
             'notes' => ['required'],
         ];
     }

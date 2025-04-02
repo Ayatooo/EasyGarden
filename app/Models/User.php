@@ -10,11 +10,20 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
+use Lab404\Impersonate\Models\Impersonate;
 
 class User extends Authenticatable
 {
     /** @use HasFactory<\Database\Factories\UserFactory> */
-    use HasFactory, Notifiable;
+    use HasFactory, Notifiable, Impersonate;
+
+    public function isAdmin(): bool
+    {
+        return in_array($this->email, [
+            'louisreynard919@gmail.com',
+            'matdinville@gmail.com',
+        ]);
+    }
 
     /**
      * The attributes that are mass assignable.
