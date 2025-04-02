@@ -2,7 +2,7 @@
     <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2">
         <button wire:click="previousMonth"
                 class="text-sm bg-gray-200 dark:bg-zinc-700 px-3 py-2 rounded-md hover:bg-gray-300 dark:hover:bg-zinc-600 w-full sm:w-auto">
-            ⬅ Mois précédent
+            <flux:icon name="chevron-left" class="cursor-pointer text-emerald-600"/>
         </button>
 
         <h2 class="text-lg font-bold text-center text-gray-800 dark:text-white">
@@ -11,7 +11,7 @@
 
         <button wire:click="nextMonth"
                 class="text-sm bg-gray-200 dark:bg-zinc-700 px-3 py-2 rounded-md hover:bg-gray-300 dark:hover:bg-zinc-600 w-full sm:w-auto">
-            Mois suivant ➡
+            <flux:icon name="chevron-right" class="cursor-pointer text-emerald-600"/>
         </button>
     </div>
 

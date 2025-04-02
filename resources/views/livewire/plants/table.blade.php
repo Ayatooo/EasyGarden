@@ -46,11 +46,11 @@
             <tr class="{{ $loop->even ? 'bg-emerald-50 dark:bg-zinc-900' : '' }}">
                 <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
                     <div class="flex gap-4">
+                        <a href="{{ route('plants.show', $plant) }}">
+                            <flux:icon name="information-circle" class="cursor-pointer text-emerald-600"/>
+                        </a>
                         @livewire('plants.update', ['plant' => $plant], key("update-{$plant->id}-{$index}"))
                         @livewire('plants.delete', ['plant' => $plant], key("delete-{$plant->id}-{$index}"))
-                        <a href="{{ route('plants.show', $plant) }}">
-                                <flux:icon name="eye" class="cursor-pointer text-emerald-600"/>
-                        </a>
                     </div>
                 </td>
                 <td class="px-6 py-4 whitespace-nowrap text-sm font-medium dark:text-white text-gray-900">
