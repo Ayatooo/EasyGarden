@@ -11,8 +11,6 @@
         </p>
     </div>
 
-    <flux:separator variant="subtle" class="mb-5"/>
-
     <div class="mt-5">
         @livewire('forum.forum-index')
     </div>

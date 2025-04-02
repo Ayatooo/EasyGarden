@@ -12,8 +12,6 @@
         </p>
     </div>
 
-    <flux:separator variant="subtle" class="mb-5"/>
-
     @if($hasPlants)
         <div x-data="{ activeTab: 'today' }">
             <!-- Liste des onglets -->
