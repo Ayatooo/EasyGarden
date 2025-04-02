@@ -56,9 +56,9 @@ class Agenda extends Component
 
             $tasks->each(function ($task) {
                 $task->bgColor = match ($task->status) {
-                    'A venir' => 'bg-blue-600',
-                    'Effectué' => 'bg-green-600',
-                    default => 'bg-red-600',
+                    'A venir' => 'bg-blue-500 dark:bg-blue-600',
+                    'Effectué' => 'bg-green-500 dark:bg-green-600',
+                    default => 'bg-red-500 dark:bg-red-600',
                 };
             });
 
