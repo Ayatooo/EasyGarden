@@ -21,18 +21,19 @@ class AdminController extends Controller
             return view('dashboard');
         }
 
-        $users = User::count();
-        $plants = Plant::count();
-        $tasks = Task::count();
-        $forumPosts = ForumPost::count();
-        $replies = ForumReply::count();
+        $usersCount = User::count();
+        $plantsCount = Plant::count();
+        $tasksCount = Task::count();
+        $forumPostsCount = ForumPost::count();
+        $repliesCount = ForumReply::count();
 
         return view('admin.index', [
-            'users' => $users,
-            'plants' => $plants,
-            'tasks' => $tasks,
-            'forumPosts' => $forumPosts,
-            'replies' => $replies,
+            'users' => User::latest()->paginate(10), // pagination ici
+            'usersCount' => $usersCount,
+            'plantsCount' => $plantsCount,
+            'tasksCount' => $tasksCount,
+            'forumPostsCount' => $forumPostsCount,
+            'repliesCount' => $repliesCount,
         ]);
     }
 }
