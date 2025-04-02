@@ -17,7 +17,7 @@ class Create extends Component
     public string $submitText = '';
     public string $action = '';
     public string $name = '';
-    public File $image;
+    public $image;
     public string $type = '';
     public int $watering_frequency = 0;
     public string $sun_exposure = '';
