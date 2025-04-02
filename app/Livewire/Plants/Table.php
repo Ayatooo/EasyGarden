@@ -36,7 +36,7 @@ class Table extends Component
     public function loadPlants(): LengthAwarePaginator
     {
         return Plant::where('user_id', Auth::id())
-            ->orderBy('created_at', 'desc')
+            ->orderBy('updated_at', 'desc')
             ->paginate(10);
     }
 }

@@ -33,6 +33,10 @@
             </th>
             <th scope="col"
                 class="px-6 py-3 text-left text-xs font-medium dark:text-white text-gray-500 uppercase tracking-wider">
+                Emplacement
+            </th>
+            <th scope="col"
+                class="px-6 py-3 text-left text-xs font-medium dark:text-white text-gray-500 uppercase tracking-wider">
                 Notes
             </th>
         </tr>
@@ -65,6 +69,9 @@
                 </td>
                 <td class="px-6 py-4 whitespace-nowrap text-sm dark:text-white text-gray-900">
                     {{ $plant->soil_type }}
+                </td>
+                <td class="px-6 py-4 text-sm dark:text-white text-gray-900">
+                    {{ Str::limit($plant->location, 50) }}
                 </td>
                 <td class="px-6 py-4 text-sm dark:text-white text-gray-900">
                     {{ Str::limit($plant->notes, 50) }}
