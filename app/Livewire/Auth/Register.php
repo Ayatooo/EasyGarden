@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use Livewire\Attributes\Layout;
 use Livewire\Component;
+use Carbon\Carbon;
 
 #[Layout('components.layouts.auth')]
 class Register extends Component
@@ -35,7 +36,11 @@ class Register extends Component
 
         $validated['password'] = Hash::make($validated['password']);
 
-        event(new Registered(($user = User::create($validated))));
+        $user = User::create($validated);
+        $user->trial_ends_at = Carbon::now()->addDays(30);
+        $user->save();
+
+        event(new Registered($user));
 
         $thread = OpenAIHelper::createThread();
         $user->thread_id = $thread->id;

@@ -56,6 +56,8 @@
         <p>{{ __('Vous êtes actuellement sur un abonnement d\'essai gratuit. Passez à un plan premium pour débloquer toutes les fonctionnalités.') }}
             <a href="{{ route('checkout') }}" class="text-blue-500 underline">{{ __('Mettre à niveau maintenant') }}</a></p>
     </div>
+    @if(!auth()->user()->isAdmin())
+    @endif
     <!-- Desktop User Menu -->
     <flux:dropdown position="bottom" align="start">
         <flux:profile
