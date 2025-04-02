@@ -44,8 +44,10 @@
             </tbody>
         </table>
 
-        <div class="p-4">
-            {{ $users->links() }}
-        </div>
+        @if($users->hasPages())
+            <div class="p-4">
+                {{ $users->links() }}
+            </div>
+        @endif
     </div>
 </div>

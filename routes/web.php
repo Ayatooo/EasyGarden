@@ -50,6 +50,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('settings/appearance', Appearance::class)->name('settings.appearance');
 
     Route::get('plants', [PlantController::class, 'index'])->name('plants');
+    Route::get('/plants/{plant}', [PlantController::class, 'show'])->name('plants.show');
+
     Route::get('tasks', [TaskController::class, 'index'])->name('tasks.index');
     Route::get('forum', [ForumController::class, 'index'])->name('forum.index');
     Route::get('forum/{postId}', [ForumController::class, 'show'])->name('forum.show');

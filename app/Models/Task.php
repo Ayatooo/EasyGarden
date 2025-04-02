@@ -12,10 +12,13 @@ class Task extends Model
     use HasFactory, SoftDeletes;
 
     public const TYPE_OPTIONS = [
-        'arrosage' => 'Arrosage',
-        'taille' => 'Taille',
-        'rempotage' => 'Rempotage',
-        'engrais' => 'Engrais',
+        'Arrosage',
+        'Autre',
+        'Engrais',
+        'Fertilisation',
+        'Nettoyage',
+        'Taille',
+        'Transplantation',
     ];
 
     protected $fillable = [
