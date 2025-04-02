@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ForumController;
 use App\Http\Controllers\TaskController;
 use App\Livewire\Settings\Appearance;
@@ -12,13 +13,13 @@ Route::get('/', static function () {
     return view('welcome');
 })->name('home');
 
+Route::get('/admin', [AdminController::class, 'index'])
+    ->middleware(['auth', 'verified'])
+    ->name('admin');
+
 Route::view('dashboard', 'dashboard')
     ->middleware(['auth', 'verified'])
     ->name('dashboard');
-
-Route::view('garden', 'garden')
-    ->middleware(['auth', 'verified'])
-    ->name('garden');
 
 Route::middleware(['auth'])->group(function () {
     Route::redirect('settings', 'settings/profile');
