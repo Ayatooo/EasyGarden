@@ -6,6 +6,7 @@ use App\Http\Controllers\TaskController;
 use App\Livewire\Settings\Appearance;
 use App\Livewire\Settings\Password;
 use App\Livewire\Settings\Profile;
+use App\Models\User;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PlantController;
 
@@ -20,6 +21,26 @@ Route::get('/admin', [AdminController::class, 'index'])
 Route::view('dashboard', 'dashboard')
     ->middleware(['auth', 'verified'])
     ->name('dashboard');
+
+
+/*** ROUTES ASSISTANCE ***/
+Route::get('/impersonate/{id}', static function ($id) {
+    $user = User::findOrFail($id);
+
+    abort_unless(auth()->user()->canImpersonate(), 403);
+
+    auth()->user()->impersonate($user);
+
+    return redirect('/dashboard');
+})->middleware('auth')->name('impersonate');
+
+Route::get('/leave-impersonation', static function () {
+    auth()->user()->leaveImpersonation();
+
+    return redirect('/admin');
+})->middleware('auth')->name('impersonate.leave');
+/*** FIN DES ROUTES ASSISTANCE ***/
+
 
 Route::middleware(['auth'])->group(function () {
     Route::redirect('settings', 'settings/profile');
