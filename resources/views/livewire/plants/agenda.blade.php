@@ -25,15 +25,19 @@
 
     <div class="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-7 gap-2 text-xs text-center">
         @foreach($days as $day)
-            <div class="p-2 border rounded-xl flex flex-col items-center justify-start min-h-[80px] sm:min-h-[100px] {{ $day['date']->isToday() ? 'border-2 border-green-400' : 'bg-white dark:bg-zinc-800' }}">
+            <div
+                class="p-2 border rounded-xl flex flex-col items-center justify-start min-h-[80px] sm:min-h-[100px] {{ $day['date']->isToday() ? 'border-2 border-green-400' : 'bg-white dark:bg-zinc-800' }}">
                 <div class="text-xs font-bold text-gray-700 dark:text-gray-200 mb-1">
                     {{ $day['date']->format('j') }}
                 </div>
 
                 @forelse($day['tasks'] as $task)
-                    <div class="mt-1 px-2 py-1 {{ $task->bgColor ?? 'bg-green-600' }} text-white text-[11px] sm:text-[13px] font-medium rounded-md w-full truncate">
-                        {{ $task->task_type }}
-                    </div>
+                    <flux:tooltip :content="$task->status" placement="top">
+                        <div
+                            class="mt-1 px-2 py-1 {{ $task->bgColor ?? 'bg-green-600' }} text-white text-[11px] sm:text-[13px] font-medium rounded-md w-full truncate">
+                            {{ $task->task_type }}
+                        </div>
+                    </flux:tooltip>
                 @empty
                     <div class="text-[10px] text-gray-400 dark:text-gray-500">-</div>
                 @endforelse
