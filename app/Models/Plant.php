@@ -68,7 +68,7 @@ class Plant extends Model
     {
         return $this->image
             ? Storage::disk('s3')->temporaryUrl($this->image, now()->addMinutes(5))
-            : asset('img/plants_type/' . $this->type . '.jpg');
+            : basset('img/plants_type/' . $this->type . '.jpg');
     }
 
     public function user(): BelongsTo

@@ -22,7 +22,7 @@
                 @if(!$hasMessages)
                     <div class="flex items-start space-x-2 text-sm">
                         <div class="rounded-full bg-gray-100 border p-1">
-                            <img src="{{ asset('img/logo.png') }}" alt="Assistant" class="w-6 h-6 rounded-full">
+                            <img src="{{ basset('img/logo.png') }}" alt="Assistant" class="w-6 h-6 rounded-full">
                         </div>
                         <div
                             class="bg-gray-200 dark:bg-gray-600 text-gray-800 dark:text-white rounded-lg p-2 max-w-[80%]">
@@ -44,7 +44,7 @@
                             <!-- Message Assistant -->
                             <div class="flex items-start space-x-3 text-sm">
                                 <div class="rounded-full border p-1 w-10 h-10 flex items-center justify-center">
-                                    <img src="{{ asset('img/logo.png') }}" alt="Assistant"
+                                    <img src="{{ basset('img/logo.png') }}" alt="Assistant"
                                          class="w-8 h-8 rounded-full object-cover">
                                 </div>
                                 <div
