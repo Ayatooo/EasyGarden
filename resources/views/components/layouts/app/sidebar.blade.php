@@ -51,12 +51,19 @@
     </div>
     @endImpersonating
 
-    <div class="bg-yellow-100 border-l-4 border-yellow-500 text-yellow-700 p-4 text-sm" role="alert">
-        <p class="font-bold">{{ __('Essai Gratuit') }}</p>
-        <p>{{ __('Vous êtes actuellement sur un abonnement d\'essai gratuit. Passez à un plan premium pour débloquer toutes les fonctionnalités.') }}
-            <a href="{{ route('checkout') }}" class="text-blue-500 underline">{{ __('Mettre à niveau maintenant') }}</a></p>
-    </div>
     @if(!auth()->user()->isAdmin())
+        <div class="bg-yellow-100 border-l-4 border-yellow-500 text-yellow-700 p-4 text-sm" role="alert">
+            @php
+                $trialEndsAt = \Carbon\Carbon::parse(auth()->user()->trial_ends_at);
+                $daysRemaining = now()->diffInDays($trialEndsAt, false);
+            @endphp
+            @if($daysRemaining > 0)
+                <p>Il vous reste {{ floor($daysRemaining) }} jour(s) d’essai.</p>
+                <a href="{{ route('checkout') }}" class="text-emerald-600 underline">{{ __('Mettre à niveau maintenant') }}</a>
+            @else
+                <p>Votre période d’essai est terminée.</p>
+            @endif
+        </div>
     @endif
     <!-- Desktop User Menu -->
     <flux:dropdown position="bottom" align="start">
