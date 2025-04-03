@@ -4,7 +4,7 @@
         <flux:breadcrumbs.item>Mes tâches</flux:breadcrumbs.item>
     </flux:breadcrumbs>
 
-    <div class="bg-green-50 border-t border-b border-green-300 text-green-600 px-4 py-3 rounded-lg mt-5" role="alert">
+    <div class="bg-green-50 border-t border-b border-green-300 text-green-600 px-4 py-3 rounded-lg mt-4" role="alert">
         <p class="font-bold">Tâches automatisées 🤖</p>
         <p class="text-sm">
             Tous les jours, des tâches d'arrosage sont générées automatiquement pour vos plantes.
@@ -13,7 +13,11 @@
     </div>
 
     @if($hasPlants)
-        <div x-data="{ activeTab: 'today' }" class="mt-6">
+        <div class="mt-4">
+            @livewire('tasks.create')
+        </div>
+
+        <div x-data="{ activeTab: 'today' }" class="mt-4">
             <!-- Onglets -->
             <div class="flex border-b">
                 <template x-for="tab in ['today', 'unscheduled', 'all']" :key="tab">
@@ -33,12 +37,11 @@
             <!-- Contenu -->
             <div class="mt-5">
                 <div x-show="activeTab === 'today'">
-                    @livewire('tasks.create')
                     @livewire('tasks.all-task')
                 </div>
 
                 <div x-show="activeTab === 'unscheduled'" x-cloak>
-{{--                    @livewire('tasks.unscheduled-tasks')--}}
+                    {{--                    @livewire('tasks.unscheduled-tasks')--}}
                 </div>
 
                 <div x-show="activeTab === 'all'" x-cloak>

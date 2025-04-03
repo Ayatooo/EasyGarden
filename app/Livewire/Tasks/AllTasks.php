@@ -29,6 +29,13 @@ class AllTasks extends Component
     public function render(): View
     {
         $tasks = $this->loadTasks();
+        $tasks->each(function ($task) {
+            $task->bgColor = match ($task->status) {
+                'A venir' => 'bg-blue-200 text-blue-800 dark:bg-blue-600 dark:text-white',
+                'Effectué' => 'bg-green-200 text-green-800 dark:bg-green-600 dark:text-white',
+                default => 'bg-red-200 text-red-800 dark:bg-red-800 dark:text-white',
+            };
+        });
 
         return view('livewire.tasks.all-tasks', [
             'tasks' => $tasks,
@@ -37,6 +44,7 @@ class AllTasks extends Component
     }
 
     #[On('task-deleted')]
+    #[On('task-updated')]
     public function loadTasks(): LengthAwarePaginator
     {
         return Task::with('plant')

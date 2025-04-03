@@ -70,7 +70,7 @@
                 <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
                     <div class="flex gap-4">
                         <flux:tooltip content="Modifier">
-{{--                            @livewire('tasks.update', ['task' => $task], key("update-{$task->id}-{$index}"))--}}
+                            @livewire('tasks.update', ['task' => $task], key("update-{$task->id}-{$index}"))
                         </flux:tooltip>
                         <flux:tooltip content="Supprimer">
                             @livewire('tasks.delete', ['task' => $task], key("delete-$task->id-$index"))
@@ -80,9 +80,7 @@
                 <td class="px-6 py-4 whitespace-nowrap dark:text-white">{{ $task->task_type }}</td>
                 <td class="px-6 py-4 whitespace-nowrap dark:text-white">{{ $task->plant->name ?? '-' }}</td>
                 <td class="px-6 py-4 whitespace-nowrap">
-                    <span class="inline-block px-2 py-1 rounded text-xs font-medium
-                        {{ $task->status === 'A venir' ? 'bg-blue-200 text-blue-800 dark:bg-blue-600 dark:text-white' :
-                           ($task->status === 'Effectué' ? 'bg-green-200 text-green-800 dark:bg-green-600 dark:text-white' : 'bg-gray-200') }}">
+                    <span class="inline-block px-2 py-1 rounded text-xs font-medium {{ $task->bgColor }}">
                         {{ $task->status }}
                     </span>
                 </td>
