@@ -59,6 +59,7 @@ class Update extends Component
         ]);
 
         $this->modal('update-task-' . $this->task->id)->close();
-        $this->dispatch('task-updated');
+        $this->dispatch('task-updated')->to('tasks.all-tasks');
+        $this->dispatch('task-updated')->to('tasks.today-tasks');
     }
 }

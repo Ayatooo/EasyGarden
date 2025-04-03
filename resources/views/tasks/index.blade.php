@@ -37,7 +37,7 @@
             <!-- Contenu -->
             <div class="mt-5">
                 <div x-show="activeTab === 'today'">
-                    @livewire('tasks.today-task')
+                    @livewire('tasks.today-tasks')
                 </div>
 
                 <div x-show="activeTab === 'unscheduled'" x-cloak>

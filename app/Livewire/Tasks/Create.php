@@ -58,7 +58,9 @@ class Create extends Component
         $task->save();
 
         $this->modal('create-task')->close();
-        $this->dispatch('task-created');
+        $this->dispatch('task-created')->to('tasks.all-tasks');
+        $this->dispatch('task-created')->to('tasks.today-tasks');
+
 
         $date = new DateTime();
         $this->scheduled_at = $date->format('Y-m-d');

@@ -18,7 +18,8 @@ class Delete extends Component
     public function deleteTask(): void
     {
         $this->task->delete();
-        $this->dispatch('task-deleted');
+        $this->dispatch('task-deleted')->to('tasks.all-tasks');
+        $this->dispatch('task-deleted')->to('tasks.today-tasks');
         $this->dispatch('close-modal', ['name' => "delete-task-{$this->task->id}"]);
     }
 }
