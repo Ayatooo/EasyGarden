@@ -11,8 +11,14 @@
                 </div>
             </div>
 
+            <!-- Description de la tâche -->
+            <p class="text-sm text-gray-500 dark:text-white">
+                {{ $task->description }}
+            </p>
+
             <!-- Statut sous forme de Badge -->
             <div class="flex items-center justify-between">
+
                 <!-- Badge du statut -->
                 <span
                     class="{{ $task->status === 'A venir' ? 'bg-yellow-100 text-yellow-800' : ($task->status === 'Effectué' ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800') }} px-2 py-1 text-xs font-medium rounded">

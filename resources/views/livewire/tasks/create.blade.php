@@ -33,6 +33,8 @@
                 <option value="Annulé">Annulé</option>
             </flux:select>
 
+            <flux:textarea label="Description" wire:model="description" type="textarea" rows="3"/>
+
             <div class="flex">
                 <flux:spacer/>
 

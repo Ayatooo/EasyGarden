@@ -14,6 +14,7 @@ class Create extends Component
     public ?string $task_type;
     public ?string $scheduled_at;
     public string $status = 'A venir';
+    public ?string $description = null;
     public Collection $plants;
     public ?int $plant_id;
 
@@ -45,6 +46,7 @@ class Create extends Component
             'task_type' => 'required|in:' . implode(',', Task::TYPE_OPTIONS),
             'scheduled_at' => 'required|date',
             'status' => 'required|in:Annulé,A venir,Effectué',
+            'description' => 'nullable|string|max:1000',
         ]);
 
         $task->plant_id = $this->plant_id;
@@ -52,9 +54,10 @@ class Create extends Component
         $task->task_type = $this->task_type;
         $task->status = $this->status;
         $task->scheduled_at = $this->scheduled_at;
+        $task->description = $this->description;
         $task->save();
 
-        self::modal('create-task')->close();
+        $this->modal('create-task')->close();
 
         $this->dispatch('loadTasks');
         $this->dispatch('loadFutureTasks');
@@ -65,6 +68,7 @@ class Create extends Component
             'plant_id',
             'task_type',
             'status',
+            'description',
         ]);
     }
 }
