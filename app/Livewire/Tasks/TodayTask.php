@@ -8,7 +8,7 @@ use Illuminate\View\View;
 use Livewire\Attributes\On;
 use Livewire\Component;
 
-class AllTask extends Component
+class TodayTask extends Component
 {
     public Collection $tasksOfTheDay;
 
@@ -22,10 +22,12 @@ class AllTask extends Component
      */
     public function render(): View
     {
-        return view('livewire.tasks.all-task');
+        return view('livewire.tasks.today-task');
     }
 
-    #[On('loadTasks')]
+    #[On('task-deleted')]
+    #[On('task-updated')]
+    #[On('task-created')]
     public function loadTask(): void
     {
         $tasksOfTheDayToDo = Task::where('user_id', auth()->id())
@@ -56,7 +58,7 @@ class AllTask extends Component
         $task->status = 'Effectué';
         $task->save();
 
-        $this->dispatch('loadTasks');
+        $this->dispatch('task-updated');
     }
 
     #[On('markAsCanceled')]
@@ -66,6 +68,6 @@ class AllTask extends Component
         $task->status = 'Annulé';
         $task->save();
 
-        $this->dispatch('loadTasks');
+        $this->dispatch('task-updated');
     }
 }

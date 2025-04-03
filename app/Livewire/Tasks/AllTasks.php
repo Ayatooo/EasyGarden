@@ -45,6 +45,7 @@ class AllTasks extends Component
 
     #[On('task-deleted')]
     #[On('task-updated')]
+    #[On('task-created')]
     public function loadTasks(): LengthAwarePaginator
     {
         return Task::with('plant')
