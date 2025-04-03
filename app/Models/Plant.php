@@ -20,13 +20,13 @@ class Plant extends Model
         });
     }
 
-
     public const TYPE_OPTIONS = [
         'Arbre',
         'Arbuste',
         'Autre',
         'Cactus',
         'Fleur',
+        'Palmier',
         'Plante aquatique',
         'Plante grasse',
         'Plante verte',
