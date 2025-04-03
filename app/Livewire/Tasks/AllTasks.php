@@ -5,6 +5,9 @@ namespace App\Livewire\Tasks;
 use App\Models\Plant;
 use App\Models\Task;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\View\View;
+use Livewire\Attributes\On;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -20,22 +23,12 @@ class AllTasks extends Component
 
     protected $queryString = ['search', 'filterType', 'filterStatus', 'filterPlant'];
 
-
-    public function render()
+    /**
+     * @return View
+     */
+    public function render(): View
     {
-        $tasks = Task::with('plant')
-            ->where('user_id', auth()->id())
-            ->when($this->search, fn(Builder $q) => $q->where(function ($query) {
-                $query->where('task_type', 'ilike', "%{$this->search}%")
-                    ->orWhere('status', 'ilike', "%{$this->search}%")
-                    ->orWhere('description', 'ilike', "%{$this->search}%")
-                    ->orWhereHas('plant', fn($q) => $q->where('name', 'ilike', "%{$this->search}%"));
-            }))
-            ->when($this->filterType, fn($q) => $q->where('task_type', $this->filterType))
-            ->when($this->filterStatus, fn($q) => $q->where('status', $this->filterStatus))
-            ->when($this->filterPlant, fn($q) => $q->where('plant_id', $this->filterPlant))
-            ->orderBy('scheduled_at', 'asc')
-            ->paginate(10);
+        $tasks = $this->loadTasks();
 
         return view('livewire.tasks.all-tasks', [
             'tasks' => $tasks,
@@ -43,24 +36,22 @@ class AllTasks extends Component
         ]);
     }
 
-    public function updatingSearch()
+    #[On('task-deleted')]
+    public function loadTasks(): LengthAwarePaginator
     {
-        $this->resetPage();
-    }
-
-    public function updatingFilterType()
-    {
-        $this->resetPage();
-    }
-
-    public function updatingFilterStatus()
-    {
-        $this->resetPage();
-    }
-
-    public function updatingFilterPlant()
-    {
-        $this->resetPage();
+        return Task::with('plant')
+            ->where('user_id', auth()->id())
+            ->when($this->search, fn(Builder $q) => $q->where(function ($query) {
+                $query->where('task_type', 'like', "%$this->search%")
+                    ->orWhere('status', 'like', "%$this->search%")
+                    ->orWhere('description', 'like', "%$this->search%")
+                    ->orWhereHas('plant', fn($q) => $q->where('name', 'like', "%$this->search%"));
+            }))
+            ->when($this->filterType, fn($q) => $q->where('task_type', $this->filterType))
+            ->when($this->filterStatus, fn($q) => $q->where('status', $this->filterStatus))
+            ->when($this->filterPlant, fn($q) => $q->where('plant_id', $this->filterPlant))
+            ->orderBy('scheduled_at')
+            ->paginate(10);
     }
 
     public function edit(int $taskId): void
@@ -90,6 +81,26 @@ class AllTasks extends Component
         $this->filterType = '';
         $this->filterStatus = '';
         $this->filterPlant = '';
+        $this->resetPage();
+    }
+
+    public function updatingSearch(): void
+    {
+        $this->resetPage();
+    }
+
+    public function updatingFilterType(): void
+    {
+        $this->resetPage();
+    }
+
+    public function updatingFilterStatus(): void
+    {
+        $this->resetPage();
+    }
+
+    public function updatingFilterPlant(): void
+    {
         $this->resetPage();
     }
 }
