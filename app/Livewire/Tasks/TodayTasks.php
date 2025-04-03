@@ -60,6 +60,7 @@ class TodayTasks extends Component
 
         $this->dispatch('task-updated')->to('tasks.all-tasks');
         $this->dispatch('task-updated')->to('tasks.today-tasks');
+        $this->dispatch('task-updated')->to('tasks.unscheduled-tasks');
     }
 
     #[On('markAsCanceled')]

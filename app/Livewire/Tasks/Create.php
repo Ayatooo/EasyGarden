@@ -44,7 +44,7 @@ class Create extends Component
         $this->validate([
             'plant_id' => 'required|exists:plants,id',
             'task_type' => 'required|in:' . implode(',', Task::TYPE_OPTIONS),
-            'scheduled_at' => 'required|date',
+            'scheduled_at' => 'nullable|date',
             'status' => 'required|in:Annulé,A venir,Effectué',
             'description' => 'nullable|string|max:1000',
         ]);
@@ -53,13 +53,14 @@ class Create extends Component
         $task->user_id = auth()->id();
         $task->task_type = $this->task_type;
         $task->status = $this->status;
-        $task->scheduled_at = $this->scheduled_at;
+        $task->scheduled_at = $this?->scheduled_at ?? null;
         $task->description = $this->description;
         $task->save();
 
         $this->modal('create-task')->close();
         $this->dispatch('task-created')->to('tasks.all-tasks');
         $this->dispatch('task-created')->to('tasks.today-tasks');
+        $this->dispatch('task-created')->to('tasks.unscheduled-tasks');
 
 
         $date = new DateTime();

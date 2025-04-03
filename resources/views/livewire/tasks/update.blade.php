@@ -25,7 +25,15 @@
                     <flux:select.option value="Annulé">Annulé</flux:select.option>
                 </flux:select>
 
-                <flux:input wire:model="scheduled_at" type="date" label="Date prévue" class="text-sm"/>
+                <div class="flex items-end space-x-2">
+                    <flux:input type="date" label="Date prévue" wire:model="scheduled_at" class="flex-1" />
+
+                    @if ($scheduled_at)
+                        <flux:button wire:click="$set('scheduled_at', null)">
+                            ❌
+                        </flux:button>
+                    @endif
+                </div>
 
                 <flux:textarea wire:model="description" label="Description" placeholder="Détails de la tâche" class="text-sm"/>
 

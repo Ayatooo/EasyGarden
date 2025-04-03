@@ -41,11 +41,7 @@
                 </div>
 
                 <div x-show="activeTab === 'unscheduled'" x-cloak>
-                    <div class="relative h-100 flex-1 overflow-hidden rounded-xl border border-neutral-200 dark:border-neutral-700 text-center flex items-center justify-center">
-                        <x-placeholder-pattern class="absolute inset-0 size-full stroke-gray-900/20 dark:stroke-neutral-100/20"/>
-                        Soon ⚡
-                    </div>
-                    {{--                    @livewire('tasks.unscheduled-tasks')--}}
+                    @livewire('tasks.unscheduled-tasks')
                 </div>
 
                 <div x-show="activeTab === 'all'" x-cloak>

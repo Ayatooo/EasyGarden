@@ -13,7 +13,7 @@ class Update extends Component
     public Task $task;
     public string $task_type = '';
     public string $status = '';
-    public ?string $scheduled_at = '';
+    public ?string $scheduled_at = null;
     public ?string $description = '';
     public string $title = '';
     public string $submitText = '';
@@ -47,7 +47,7 @@ class Update extends Component
         $this->validate([
             'task_type' => 'required|string|max:255',
             'status' => 'required|string|max:255',
-            'scheduled_at' => 'nullable|date',
+            'scheduled_at' => 'nullable',
             'description' => 'nullable|string|max:1000',
         ]);
 
@@ -61,5 +61,6 @@ class Update extends Component
         $this->modal('update-task-' . $this->task->id)->close();
         $this->dispatch('task-updated')->to('tasks.all-tasks');
         $this->dispatch('task-updated')->to('tasks.today-tasks');
+        $this->dispatch('task-updated')->to('tasks.unscheduled-tasks');
     }
 }

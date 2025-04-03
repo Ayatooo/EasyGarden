@@ -20,6 +20,8 @@ class Delete extends Component
         $this->task->delete();
         $this->dispatch('task-deleted')->to('tasks.all-tasks');
         $this->dispatch('task-deleted')->to('tasks.today-tasks');
+        $this->dispatch('task-deleted')->to('tasks.unscheduled-tasks');
+
         $this->dispatch('close-modal', ['name' => "delete-task-{$this->task->id}"]);
     }
 }
