@@ -70,6 +70,7 @@ class Create extends Component
         $plant->watering_frequency = $this->watering_frequency;
         $plant->sun_exposure = $this->sun_exposure;
         $plant->soil_type = $this->soil_type;
+        $plant->location = $this->location;
         $plant->notes = $this->notes;
         $plant->save();
 
