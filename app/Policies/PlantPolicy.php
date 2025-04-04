@@ -17,6 +17,7 @@ class PlantPolicy
 
     public function view(User $user, Plant $plant): bool
     {
+        return $user->id === $plant->user_id || $user->isAdmin();
     }
 
     public function create(User $user): bool

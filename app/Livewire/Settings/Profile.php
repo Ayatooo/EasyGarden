@@ -9,37 +9,36 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\Rule;
 use Livewire\Component;
 use Livewire\WithFileUploads;
+use Illuminate\Http\UploadedFile;
 
 class Profile extends Component
 {
     use WithFileUploads;
 
     public string $name = '';
-
     public string $email = '';
 
-    public $avatar;
+    public $avatar; // Peut être null ou UploadedFile
+    public $dashboard_image;
 
-    /**
-     * Mount the component.
-     */
     public function mount(): void
     {
-        $this->name = Auth::user()->name;
-        $this->email = Auth::user()->email;
-        $this->avatar = Auth::user()->avatar;
+        $user = Auth::user();
+
+        $this->name = $user->name;
+        $this->email = $user->email;
+
+        // Ne pas affecter avatar/dashboard_image (laisser null tant que pas d'upload)
+        $this->avatar = null;
+        $this->dashboard_image = null;
     }
 
-    /**
-     * Update the profile information for the currently authenticated user.
-     */
     public function updateProfileInformation(): void
     {
         $user = Auth::user();
 
         $validated = $this->validate([
             'name' => ['required', 'string', 'max:255'],
-            'avatar' => ['nullable', 'image'],
             'email' => [
                 'required',
                 'string',
@@ -48,14 +47,25 @@ class Profile extends Component
                 'max:255',
                 Rule::unique(User::class)->ignore($user->id),
             ],
+            'avatar' => ['nullable', 'image', 'max:2048'],
+            'dashboard_image' => ['nullable', 'image', 'max:4096'],
         ]);
-        $user->fill($validated);
 
-        if ($user->isDirty('avatar')) {
-            $image = Storage::disk('s3')->put('avatars', $validated['avatar']);
-            $user->avatar = $image;
+        $user->name = $validated['name'];
+        $user->email = $validated['email'];
+
+        // Si un nouveau fichier avatar est uploadé
+        if ($this->avatar instanceof UploadedFile) {
+            $path = Storage::disk('s3')->put('avatars', $this->avatar);
+            $user->avatar = $path;
         }
 
+        if ($this->dashboard_image instanceof UploadedFile) {
+            $path = Storage::disk('s3')->put('dashboard-images', $this->dashboard_image);
+            $user->dashboard_image = $path;
+        }
+
+        // Réinitialiser vérification email si changement
         if ($user->isDirty('email')) {
             $user->email_verified_at = null;
         }
@@ -63,23 +73,19 @@ class Profile extends Component
         $user->save();
 
         $this->dispatch('profile-updated', name: $user->name);
+
+        $this->dispatch('refresh');
     }
 
-    /**
-     * Send an email verification notification to the current user.
-     */
     public function resendVerificationNotification(): void
     {
         $user = Auth::user();
 
-        if ($user->hasVerifiedEmail()) {
+        if (!$user->hasVerifiedEmail()) {
+            $user->sendEmailVerificationNotification();
+            Session::flash('status', 'verification-link-sent');
+        } else {
             $this->redirectIntended(default: route('dashboard', absolute: false));
-
-            return;
         }
-
-        $user->sendEmailVerificationNotification();
-
-        Session::flash('status', 'verification-link-sent');
     }
 }

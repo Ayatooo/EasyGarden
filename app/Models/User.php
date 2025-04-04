@@ -36,10 +36,12 @@ class User extends Authenticatable
         'password',
         'avatar',
         'thread_id',
+        'dashboard_image',
     ];
 
     protected $appends = [
         'avatar_url',
+        'dashboard_image_url',
     ];
 
     /**
@@ -84,6 +86,16 @@ class User extends Authenticatable
         return $this->avatar
             ? Storage::disk('s3')->temporaryUrl($this->avatar, now()->addMinutes(5))
             : 'https://ui-avatars.com/api/?name=' . urlencode($this->name) . '&color=7F9CF5&background=EBF4FF';
+    }
+
+    /**
+     * Get the user's dashboard image URL
+     */
+    public function getDashboardImageUrlAttribute(): string
+    {
+        return $this->dashboard_image
+            ? Storage::disk('s3')->temporaryUrl($this->dashboard_image, now()->addMinutes(5))
+            : asset('img/flower.jpg');
     }
 
     /**

@@ -27,6 +27,7 @@ class Task extends Model
         'task_type',
         'scheduled_at',
         'status',
+        'description',
     ];
 
     public function plant(): BelongsTo

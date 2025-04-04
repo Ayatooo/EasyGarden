@@ -60,7 +60,7 @@ class Update extends Component
     {
         $this->validate([
             'name' => 'required|string|max:255',
-            'type' => 'required|string|in:' . implode(',', Plant::TYPE_OPTIONS),
+            'type' => 'required|string',
             'watering_frequency' => 'required|numeric',
             'sun_exposure' => 'required|string|in:' . implode(',', Plant::SUN_EXPOSURE_OPTIONS),
             'soil_type' => 'required|string|in:' . implode(',', Plant::SOIL_TYPE_OPTIONS),

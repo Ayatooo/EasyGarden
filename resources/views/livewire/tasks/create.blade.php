@@ -25,13 +25,23 @@
                 @endforeach
             </flux:select>
 
-            <flux:input type="date" label="A faire le" wire:model="scheduled_at"/>
+            <div class="flex items-end space-x-2">
+                <flux:input type="date" label="À faire le" wire:model="scheduled_at" class="flex-1" />
+
+                @if ($scheduled_at)
+                    <flux:button wire:click="$set('scheduled_at', null)">
+                        ❌
+                    </flux:button>
+                @endif
+            </div>
 
             <flux:select label="Statut" wire:model="status">
                 <option value="A venir">A venir</option>
                 <option value="Effectué">Effectué</option>
                 <option value="Annulé">Annulé</option>
             </flux:select>
+
+            <flux:textarea label="Description" wire:model="description" type="textarea" rows="3"/>
 
             <div class="flex">
                 <flux:spacer/>
