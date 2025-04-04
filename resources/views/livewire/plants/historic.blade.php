@@ -26,31 +26,33 @@
 
                             <div class="border-b border-gray-300 my-4"></div>
 
-                            @foreach($tasksForDate as $task)
-                                @php
-                                    $bgColor = '';
-                                    switch($task->status) {
-                                        case 'Effectué':
-                                            $bgColor = 'bg-green-500';
-                                            break;
-                                        case 'A venir':
-                                            $bgColor = 'bg-blue-500';
-                                            break;
-                                        case 'Annulé':
-                                            $bgColor = 'bg-red-500';
-                                            break;
-                                        default:
-                                            $bgColor = 'bg-gray-200';
-                                    }
-                                @endphp
+                            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                                @foreach($tasksForDate as $task)
+                                    @php
+                                        $bgColor = '';
+                                        switch($task->status) {
+                                            case 'Effectué':
+                                                $bgColor = 'bg-green-500';
+                                                break;
+                                            case 'A venir':
+                                                $bgColor = 'bg-blue-500';
+                                                break;
+                                            case 'Annulé':
+                                                $bgColor = 'bg-red-500';
+                                                break;
+                                            default:
+                                                $bgColor = 'bg-gray-200';
+                                        }
+                                    @endphp
 
-                                <flux:tooltip :content="$task->status" placement="top">
-                                    <div class="p-4 {{ $bgColor }} shadow-md rounded-lg hover:shadow-xl transition duration-300 mb-4 ">
-                                        <flux:heading size="md" class="text-white">{{ ucfirst($task->task_type) }}</flux:heading>
-                                        <flux:text class="text-sm mt-1 text-white">{{ $task->description }}</flux:text>
-                                    </div>
-                                </flux:tooltip>
-                            @endforeach
+                                    <flux:tooltip :content="$task->status" placement="top">
+                                        <div class="p-3 {{ $bgColor }} shadow-md rounded-lg hover:shadow-xl transition duration-300 mb-4 inline-block">
+                                            <flux:heading size="md" class="text-white text-center">{{ ucfirst($task->task_type) }}</flux:heading>
+                                            <flux:text class="text-sm mt-1 text-white">{{ $task->description }}</flux:text>
+                                        </div>
+                                    </flux:tooltip>
+                                @endforeach
+                            </div>
                         </div>
                     @endforeach
                 </div>
