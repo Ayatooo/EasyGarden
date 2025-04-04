@@ -7,9 +7,12 @@ use App\Http\Controllers\CheckoutController;
 use App\Livewire\Settings\Appearance;
 use App\Livewire\Settings\Password;
 use App\Livewire\Settings\Profile;
+use App\Livewire\Settings\Subscription;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PlantController;
+use App\Http\Controllers\Laravel\Cashier\WebhookController;
+use App\Http\Controllers\StripeWebhookController;
 
 Route::get('/', static function () {
     return view('welcome');
@@ -49,6 +52,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('settings/profile', Profile::class)->name('settings.profile');
     Route::get('settings/password', Password::class)->name('settings.password');
     Route::get('settings/appearance', Appearance::class)->name('settings.appearance');
+    Route::get('settings/subscription', Subscription::class)->name('settings.subscription');
 
     Route::get('plants', [PlantController::class, 'index'])->name('plants');
     Route::get('/plants/{plant}', [PlantController::class, 'show'])->name('plants.show');
@@ -57,16 +61,12 @@ Route::middleware(['auth'])->group(function () {
     Route::get('forum', [ForumController::class, 'index'])->name('forum.index');
     Route::get('forum/{postId}', [ForumController::class, 'show'])->name('forum.show');
 
-    Route::get('checkout/{plan?}', CheckoutController::class)->name('checkout');
-    Route::get('checkout/success', [CheckoutController::class, 'success'])->name('checkout.success');
-    Route::get('checkout/cancel', [CheckoutController::class, 'cancel'])->name('checkout.cancel');
+    Route::get('/checkout/start/{plan?}', CheckoutController::class)->name('checkout');
 
-
+	Route::get('/checkout/success', [CheckoutController::class, 'success'])->name('checkout.success');
+	Route::get('/checkout/cancel', [CheckoutController::class, 'cancel'])->name('checkout.cancel');
 });
 
-Route::post(
-    'stripe/webhook',
-    \Laravel\Cashier\Http\Controllers\WebhookController::class
-)->name('cashier.webhook');
+Route::post('/webhook', [StripeWebhookController::class, 'handleWebhook'])->name('stripe.webhook');
 
 require __DIR__.'/auth.php';

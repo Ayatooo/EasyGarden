@@ -6,13 +6,13 @@ use Illuminate\Http\Request;
 
 class CheckoutController extends Controller
 {
-    public function __invoke(Request $request, string $plan = 'price_1R9PeL2LwbZxqF7d3T05tkly')
+    public function __invoke(Request $request, string $plan = 'price_1R9sq82LwbZxqF7dlUOS8LqA')
     {
         return $request->user()
             ->newSubscription('default', $plan)
             ->checkout([
-                'success_url' => route('dashboard', [], true),
-                'cancel_url' => route('dashboard', [], true),
+                'success_url' => route('checkout.success'),
+                'cancel_url' => route('checkout.cancel'),
             ]);
     }
 
