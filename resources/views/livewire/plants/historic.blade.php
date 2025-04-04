@@ -2,13 +2,13 @@
 
 <div>
     <flux:modal.trigger name="historic-plant">
-        <flux:button class="cursor-pointer bg-indigo-600 text-white px-4 py-2 rounded-md hover:bg-indigo-700 transition duration-300">Historique</flux:button>
+        <flux:button variant="primary" class="cursor-pointer bg-yellow-700 text-white px-4 py-2 rounded-md hover:bg-yellow-800 transition duration-300">Historique</flux:button>
     </flux:modal.trigger>
 
     <flux:modal name="historic-plant" class="md:w-96 rounded-xl bg-white shadow-xl">
         <div class="space-y-6 p-6">
-            <flux:heading size="lg" class="text-indigo-600">Historique de la plante</flux:heading>
-            <flux:text class="mt-2 text-gray-600">Voici l'historique des tâches effectuées pour cette plante 🌱</flux:text>
+            <flux:heading size="lg">Historique de la plante</flux:heading>
+            <flux:text class="text-gray-600">Voici l'historique des tâches effectuées pour cette plante 🌱</flux:text>
 
             @if(count($tasks) > 0)
                 <div class="space-y-6">
