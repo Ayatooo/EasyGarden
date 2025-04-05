@@ -39,7 +39,7 @@ class Historic extends Component
             ->when($this->filterType, fn($query) =>
             $query->where('task_type', $this->filterType)
             )
-            ->whereNotNull('schedulet_at')
+            ->whereNotNull('scheduled_at')
             ->orderBy('scheduled_at', 'desc')
             ->get();
     }
