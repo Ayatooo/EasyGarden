@@ -21,7 +21,7 @@
 
                 <!-- Badge du statut -->
                 <span
-                    class="{{ $task->status === 'A venir' ? 'bg-yellow-100 text-yellow-800' : ($task->status === 'Effectué' ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800') }} px-2 py-1 text-xs font-medium rounded">
+                    class="{{ $task->status === 'A venir' ? 'bg-yellow-100 text-yellow-800' : ($task->status === 'Effectué' ? 'bg-green-100 text-emerald-800' : 'bg-red-100 text-red-800') }} px-2 py-1 text-xs font-medium rounded">
                     {{ $task->status }}
                 </span>
 
@@ -29,7 +29,7 @@
                     <div class="flex space-x-2">
                         <flux:tooltip content="Marquer comme effectué">
                             <flux:button size="xs" wire:click="markAsDone({{ $task->id }})" class="cursor-pointer">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="text-green-700 h-4 w-4" fill="none"
+                                <svg xmlns="http://www.w3.org/2000/svg" class="text-emerald-700 h-4 w-4" fill="none"
                                      viewBox="0 0 24 24" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                           d="M5 13l4 4L19 7"/>

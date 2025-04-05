@@ -5,7 +5,7 @@
             <flux:breadcrumbs.item href="#">Mon Jardin</flux:breadcrumbs.item>
         </flux:breadcrumbs>
 
-        <div class="bg-green-50 border-t border-b border-green-300 text-green-600 px-4 py-3 rounded rounded-lg" role="alert">
+        <div class="bg-green-50 border-t border-b border-green-300 text-emerald-600 px-4 py-3 rounded rounded-lg" role="alert">
             <p class="font-bold">Mes plantes 🪴</p>
             <p class="text-sm">
                 Vous pouvez ajouter, modifier ou supprimer vos plantes ici. N'oubliez pas de les arroser régulièrement !

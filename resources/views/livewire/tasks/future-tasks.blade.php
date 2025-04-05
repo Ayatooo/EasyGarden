@@ -9,7 +9,7 @@
         <div class="space-y-6">
             @foreach($tasksGroupedByDate as $date => $tasks)
                 <div>
-                    <h3 class="text-md font-semibold text-green-600">{{ \Carbon\Carbon::parse($date)->translatedFormat('l d F Y') }}</h3>
+                    <h3 class="text-md font-semibold text-emerald-600">{{ \Carbon\Carbon::parse($date)->translatedFormat('l d F Y') }}</h3>
                     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mt-2">
                         @foreach($tasks as $task)
                             <div class="bg-white  dark:bg-zinc-700 shadow-sm rounded-lg p-4 flex flex-col space-y-3">
@@ -26,7 +26,7 @@
 
                                 <!-- Statut sous forme de Badge -->
                                 <div class="flex justify-between items-center">
-                                    <span class="{{ $task['status'] === 'A venir' ? 'bg-yellow-100 text-yellow-800' : ($task['status'] === 'Effectué' ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800') }} px-2 py-1 text-xs font-medium rounded">
+                                    <span class="{{ $task['status'] === 'A venir' ? 'bg-yellow-100 text-yellow-800' : ($task['status'] === 'Effectué' ? 'bg-green-100 text-emerald-800' : 'bg-red-100 text-red-800') }} px-2 py-1 text-xs font-medium rounded">
                                         {{ $task['status'] }}
                                     </span>
                                 </div>
