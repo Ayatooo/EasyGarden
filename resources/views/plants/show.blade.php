@@ -21,8 +21,8 @@
                         <li><strong>Notes :</strong> {{ $plant->notes }} jours</li>
                     </ul>
                     <flux:separator/>
-                    <div class="mt-4">
-                        <flux:tooltip content="Afficher l'historique">
+                    <div class="flex mt-4">
+                        <flux:tooltip content="Afficher l'historique" position="top">
                             @livewire('plants.historic', ['plant' => $plant])
                         </flux:tooltip>
                     </div>

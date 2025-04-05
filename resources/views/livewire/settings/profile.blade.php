@@ -18,7 +18,7 @@
                     </flux:link>
 
                     @if (session('status') === 'verification-link-sent')
-                        <p class="font-medium text-green-600 dark:text-green-400">
+                        <p class="font-medium text-emerald-600 dark:text-emerald-400">
                             {{ __('Un nouveau lien de vérification a été envoyé à votre adresse e-mail.') }}
                         </p>
                     @endif
@@ -65,7 +65,7 @@
                     {{ __('Enregistrer') }}
                 </flux:button>
 
-                <x-action-message class="text-green-600 dark:text-green-400" on="profile-updated">
+                <x-action-message class="text-emerald-600 dark:text-emerald-400" on="profile-updated">
                     {{ __('C\'est fait ! ✅') }}
                 </x-action-message>
             </div>

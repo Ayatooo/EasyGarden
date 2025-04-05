@@ -5,7 +5,7 @@
         <h2 class="text-2xl font-semibold text-gray-800 dark:text-gray-300">
             {{ $title }}
         </h2>
-        <p class="text-5xl font-extrabold text-green-600 dark:text-green-400 mt-2">
+        <p class="text-5xl font-extrabold text-emerald-600 dark:text-emerald-400 mt-2">
             {{ $count }}
         </p>
     </div>

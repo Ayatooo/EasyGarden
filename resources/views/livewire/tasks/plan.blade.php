@@ -1,7 +1,7 @@
 @php use App\Models\Task; @endphp
 <div>
     <flux:modal.trigger name="plan-task-{{ $task->id }}">
-        <flux:icon name="calendar" class="w-5 h-5 text-green-500 dark:text-green-500" />
+        <flux:icon name="calendar" class="w-5 h-5 text-emerald-500 dark:text-emerald-500" />
     </flux:modal.trigger>
 
     <flux:modal name="plan-task-{{ $task->id }}" class="md:w-96">
