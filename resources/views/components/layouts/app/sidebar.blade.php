@@ -52,23 +52,40 @@
     @endImpersonating
 
     @if(!auth()->user()->isAdmin())
-        @php
-            $trialEndsAt = \Carbon\Carbon::parse(auth()->user()->trial_ends_at);
-            $daysRemaining = now()->diffInDays($trialEndsAt, false);
-        @endphp
-
-        @if($daysRemaining > 0)
-            <div class="bg-yellow-100 border-l-4 border-yellow-500 text-yellow-700 p-4 text-sm" role="alert">
-                <p>Il vous reste {{ floor($daysRemaining) }} jour(s) d'essai.</p>
-                <a href="{{ route('checkout') }}" class="text-emerald-600 underline">{{ __('Mettre à niveau maintenant') }}</a>
+        @if(auth()->user()->subscribed('premium'))
+            <div class="flex items-center justify-start mt-6">
+                <span
+                    class="inline-flex items-center gap-2 bg-green-100 text-green-700 dark:bg-green-900 dark:text-green-300 px-4 py-2 rounded-md text-sm font-semibold shadow-sm">
+                    ✅ Abonné Premium
+                </span>
             </div>
         @else
-            <div class="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 text-sm" role="alert">
-                <p>Votre période d'essai est terminée.</p>
-                <a href="{{ route('checkout') }}" class="text-emerald-600 underline">{{ __('Mettre à niveau maintenant') }}</a>
+            <div
+                class="max-w-md mx-auto mt-10 bg-white dark:bg-zinc-800 p-6 rounded-xl shadow-lg text-left border border-gray-200 dark:border-zinc-700">
+                <h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-2">Passez au Premium 🌿</h2>
+                <p class="text-gray-600 dark:text-gray-300 text-sm mb-4">
+                    Débloquez toutes les fonctionnalités exclusives pour seulement <span
+                        class="font-bold text-green-700 dark:text-green-300">5,99€ / mois</span>.
+                </p>
+
+                <ul class="text-sm text-left text-gray-500 dark:text-gray-400 mb-6 space-y-1">
+                    <li>✔️ Gestion de la santé des plantes</li>
+                    <li>✔️ Gestion de vos produits et stocks</li>
+                    <li>✔️ Planification avancée des tâches</li>
+                    <li>✔️ Support prioritaire</li>
+                    <li>✔️ Accès aux futures fonctionnalités</li>
+                </ul>
+
+                <a href="{{ route('checkout') }}" class="text-sm text-gray-500 dark:text-gray-400 mb-6 cursor-pointer">
+                    <button
+                        class="cursor-pointer w-full inline-flex items-center justify-center px-5 py-2.5 bg-green-600 text-white text-sm font-semibold rounded-md hover:bg-green-700 transition duration-150 ease-in-out">
+                        🔓 Premium
+                    </button>
+                </a>
             </div>
         @endif
     @endif
+
     <!-- Desktop User Menu -->
     <flux:dropdown position="bottom" align="start">
         <flux:profile
