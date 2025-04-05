@@ -1,4 +1,4 @@
-<x-layouts.app :title="$plant->name">
+<x-layouts.app :title="$plant->name" xmlns:flux="http://www.w3.org/1999/html">
     <div class="flex flex-col lg:flex-row gap-4 lg:h-[calc(100vh-4rem)]">
 
         <aside class="lg:w-1/4 bg-white dark:bg-zinc-800 border border-gray-200 dark:border-zinc-700 rounded-xl p-4 flex flex-col lg:justify-between">
@@ -16,10 +16,16 @@
                         <li><strong>Fréquence d’arrosage :</strong> {{ $plant->watering_frequency }} jours</li>
                     </ul>
                     <flux:separator/>
-                    <ul class="mt-4 text-left text-sm text-gray-600 dark:text-gray-300 space-y-1">
+                    <ul class="mt-4 mb-4 text-left text-sm text-gray-600 dark:text-gray-300 space-y-1">
                         <li><strong>Emplacement :</strong> {{ $plant->location ?? '–' }}</li>
                         <li><strong>Notes :</strong> {{ $plant->notes }} jours</li>
                     </ul>
+                    <flux:separator/>
+                    <div class="mt-4">
+                        <flux:tooltip content="Afficher l'historique">
+                            @livewire('plants.historic', ['plant' => $plant])
+                        </flux:tooltip>
+                    </div>
                 </div>
             </div>
         </aside>
