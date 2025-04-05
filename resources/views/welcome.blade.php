@@ -13,9 +13,14 @@
     <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
         <h1 class="text-2xl font-bold text-emerald-700">EasyGarden</h1>
         @auth
-        <div class="space-x-4">
+        <div class="space-x-4 flex items-center">
             <a href="/dashboard" class="text-gray-700 font-semibold hover:underline">Mon compte</a>
-            <a href="/logout" class="text-red-600 font-semibold hover:underline">Déconnexion</a>
+            <form method="POST" action="{{ route('logout') }}" class="text-red-600 font-semibold hover:underline inline-block ml-4">
+                @csrf
+                <button type="submit" class="w-full">
+                    {{ __('Déconnexion') }}
+                </button>
+            </form>
         </div>
         @else
         <div class="space-x-4">
