@@ -4,7 +4,7 @@
         <flux:breadcrumbs.item>Mes tâches</flux:breadcrumbs.item>
     </flux:breadcrumbs>
 
-    <div class="bg-green-50 border-t border-b border-green-300 text-green-600 px-4 py-3 rounded-lg mt-4" role="alert">
+    <div class="bg-green-50 border-t border-b border-green-300 text-emerald-600 px-4 py-3 rounded-lg mt-4" role="alert">
         <p class="font-bold">Tâches automatisées 🤖</p>
         <p class="text-sm">
             Tous les jours, des tâches d'arrosage sont générées automatiquement pour vos plantes.
@@ -23,7 +23,7 @@
                 <template x-for="tab in ['today', 'unscheduled', 'all']" :key="tab">
                     <button
                         class="px-4 py-2 text-sm font-semibold focus:outline-none dark:text-white"
-                        :class="activeTab === tab ? 'border-b-2 border-green-500 text-green-700' : 'text-gray-500'"
+                        :class="activeTab === tab ? 'border-b-2 border-green-500 text-emerald-700' : 'text-gray-500'"
                         x-text="{
                             today: '📅 Tâches du jour',
                             unscheduled: '📌 À planifier',
