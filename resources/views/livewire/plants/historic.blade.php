@@ -1,4 +1,7 @@
-@php use Carbon\Carbon; @endphp
+@php
+    use Carbon\Carbon;
+    use App\Models\Task;
+@endphp
 
 <div>
     <flux:modal.trigger name="historic-plant">
@@ -9,6 +12,26 @@
         <div class="space-y-6 p-6">
             <flux:heading size="lg">Historique de la plante</flux:heading>
             <flux:text class="text-gray-600">Voici l'historique des tâches effectuées pour cette plante 🌱</flux:text>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Type</label>
+                    <select wire:model.live="filterType"
+                            class="w-full rounded-md border border-gray-300 dark:border-zinc-600 bg-white dark:bg-zinc-700 text-sm text-gray-800 dark:text-white px-3 py-2">
+                        <option value="">Tous</option>
+                        @foreach (Task::TYPE_OPTIONS as $value)
+                            <option value="{{ $value }}">{{ $value }}</option>
+                        @endforeach
+                    </select>
+                </div>
+
+                <div class="flex items-end">
+                    <button wire:click="resetFilters"
+                            class="w-full inline-flex items-center justify-center px-3 py-2 rounded-md text-sm font-medium text-gray-700 dark:text-white bg-gray-200 hover:bg-gray-300 dark:bg-zinc-700 dark:hover:bg-zinc-600 transition">
+                        🔄 Réinitialiser
+                    </button>
+                </div>
+            </div>
 
             @if(count($tasks) > 0)
                 <div class="space-y-6">
