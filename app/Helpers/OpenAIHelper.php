@@ -3,6 +3,7 @@
 namespace App\Helpers;
 
 use App\Models\ChatgptMessage;
+use App\Models\User;
 use OpenAI\Laravel\Facades\OpenAI;
 use OpenAI\Responses\Threads\ThreadResponse;
 
@@ -24,6 +25,13 @@ class OpenAIHelper
     public static function createThreadMessage(string $prompt): ChatgptMessage
     {
         $threadId = auth()->user()->thread_id;
+        if (!$threadId) {
+            $thread = OpenAIHelper::createThread();
+            $user = User::find(auth()->user()->id);
+            $user->thread_id = $thread->id;
+            $user->save();
+            $threadId = $user->thread_id;
+        }
         $threadMessageResponse = OpenAI::threads()->messages()->create($threadId, [
             'role' => 'user',
             'content' => $prompt,
