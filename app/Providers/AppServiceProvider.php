@@ -18,7 +18,7 @@ class AppServiceProvider extends ServiceProvider
             }
             if (auth()->check() && auth()->user()->email === 'louisreynard919@gmail.com') {
                 return true;
-            } else if (auth()->check() && auth()->user()->email === 'mattdinville@gmail.com') {
+            } else if (auth()->check() && auth()->user()->email === 'matdinville@gmail.com') {
                 return true;
             } else {
                 return false;
@@ -37,7 +37,7 @@ class AppServiceProvider extends ServiceProvider
             }
             if (auth()->check() && auth()->user()->email === 'louisreynard919@gmail.com') {
                 return true;
-            } else if (auth()->check() && auth()->user()->email === 'mattdinville@gmail.com') {
+            } else if (auth()->check() && auth()->user()->email === 'matdinville@gmail.com') {
                 return true;
             } else {
                 return false;
